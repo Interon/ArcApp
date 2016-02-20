@@ -49,7 +49,7 @@
   <preference name="show-splash-screen-spinner" value="true" />
   <preference name="auto-hide-splash-screen" value="false" />
   <preference name="disable-cursor" value="false" />
-  <preference name="android-minSdkVersion" value="19" />
+  <preference name="android-minSdkVersion" value="21" />
   <preference name="android-installLocation" value="auto" />
   <preference name="SplashScreen" value="screen" />
   <preference name="SplashScreenDelay" value="5000" />
@@ -168,5 +168,8 @@
   <preference name="windows-target-version" value="10.0" />
   <chcp>
     <config-file url="https://s3-us-west-2.amazonaws.com/arcapp/chcp.json"/>
+    <auto-download enabled="true"/>
+    <auto-install enabled="true"/>
+    <local-development enabled="true"/>
   </chcp>
 </widget>

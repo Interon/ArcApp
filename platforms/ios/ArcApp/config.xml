@@ -164,12 +164,11 @@
     </vs:platformSpecificValues>
     <preference name="load-url-timeout" value="80000" />
     <preference name="BackupWebStorage" value="local" />
-    <preference name="xwalkVersion" value="16+" />
-    <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
-    <preference name="xwalkMode" value="embedded" />
-    <preference name="xwalkMultipleApk" value="true" />
     <preference name="windows-target-version" value="10.0" />
     <chcp>
         <config-file url="https://s3-us-west-2.amazonaws.com/arcapp/chcp.json" />
+        <auto-download enabled="true" />
+        <auto-install enabled="true" />
+        <local-development enabled="true" />
     </chcp>
 </widget>

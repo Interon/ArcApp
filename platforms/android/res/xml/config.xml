@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget android-versionCode="98" id="co.za.interon.arcapp" ios-CFBundleVersion="980" version="1.0.98" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget android-versionCode="99" id="co.za.interon.arcapp" ios-CFBundleVersion="990" version="1.0.99" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
   <preference name="loglevel" value="DEBUG"/>
-  <preference name="webView" value="org.crosswalk.engine.XWalkWebViewEngine"/>
-  <preference default="16+" name="xwalkVersion"/>
-  <preference default="--disable-pull-to-refresh-effect" name="xwalkCommandLine"/>
-  <preference default="embedded" name="xwalkMode"/>
-  <preference default="true" name="xwalkMultipleApk"/>
   <preference name="loadUrlTimeoutValue" value="60000"/>
   <preference name="windows-phone-target-version" value="10"/>
   <preference name="permissions" value="none"/>
@@ -21,7 +16,7 @@
   <preference name="show-splash-screen-spinner" value="true"/>
   <preference name="auto-hide-splash-screen" value="false"/>
   <preference name="disable-cursor" value="false"/>
-  <preference name="android-minSdkVersion" value="21"/>
+  <preference name="android-minSdkVersion" value="19"/>
   <preference name="android-installLocation" value="auto"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="5000"/>
@@ -29,10 +24,6 @@
   <preference name="Orientation" value="portrait"/>
   <preference name="load-url-timeout" value="80000"/>
   <preference name="BackupWebStorage" value="local"/>
-  <preference name="xwalkVersion" value="16+"/>
-  <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect"/>
-  <preference name="xwalkMode" value="embedded"/>
-  <preference name="xwalkMultipleApk" value="true"/>
   <preference name="windows-target-version" value="10.0"/>
   <feature name="Sms">
     <param name="android-package" value="com.cordova.plugins.sms.Sms"/>
@@ -75,11 +66,11 @@
   <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png"/>
   <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png"/>
   <name>ArcApp</name>
-  <description>&#xD;
-       Arcfyre Application&#xD;
+  <description>
+       Arcfyre Application
     </description>
-  <author email="anton@interon.co.za" href="www.interon.co.za">&#xD;
-      Interon&#xD;
+  <author email="anton@interon.co.za" href="www.interon.co.za">
+      Interon
     </author>
   <gap:config-file parent="/manifest" platform="android">
     <application android:debuggable="true"/>
@@ -103,6 +94,8 @@
   <gap:plugin name="org.apache.cordova.splashscreen"/>
   <gap:plugin name="org.apache.cordova.vibration"/>
   <gap:plugin name="cordova-plugin-app-version" source="npm"/>
+  <gap:plugin name="cordova-hot-code-push-plugin" source="npm"/>
+  <gap:plugin name="cordova-hot-code-push-local-dev-addon" source="npm"/>
   <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
   <content src="index.html"/>
   <allow-intent href="http://*/*"/>

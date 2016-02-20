@@ -28,9 +28,6 @@
         "cordova-plugin-app-version": {
             "PACKAGE_NAME": "co.za.interon.arcapp"
         },
-        "cordova-plugin-crosswalk-webview": {
-            "PACKAGE_NAME": "co.za.interon.arcapp"
-        },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "co.za.interon.arcapp"
         },

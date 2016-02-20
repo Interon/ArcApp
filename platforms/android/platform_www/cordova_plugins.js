@@ -67,7 +67,6 @@ module.exports.metadata =
     "cordova-hot-code-push-local-dev-addon": "0.1.2",
     "cordova-hot-code-push-plugin": "1.2.5",
     "cordova-plugin-app-version": "0.1.8",
-    "cordova-plugin-crosswalk-webview": "1.5.0",
     "cordova-plugin-geolocation": "1.0.1",
     "cordova-plugin-globalization": "1.0.1"
 }
