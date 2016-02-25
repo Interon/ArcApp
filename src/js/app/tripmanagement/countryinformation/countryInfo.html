@@ -1,0 +1,22 @@
+﻿
+
+<ion-view  ng-controller="countryInfoController">
+    <ion-nav-bar  class="bar bar-header bar-dark">
+        <ion-nav-back-button  ng-cloak  ui-sref="tripdetails({Id:{{Id}}})">
+            <i class="ion-arrow-left-c">Back</i>
+        </ion-nav-back-button>
+
+    </ion-nav-bar>
+
+
+    <ion-content padding="true" >
+
+        <div ng-bind-html="poi"></div>
+
+    </ion-content>
+
+
+</ion-view>
+
+
+

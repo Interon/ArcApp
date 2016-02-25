@@ -1,0 +1,275 @@
+﻿
+<div ng-controller="tripDetailsController">
+<ion-nav-bar class="bar bar-header bar-dark">
+
+    <ion-nav-back-button>
+        <button class="button"  ng-click="goTo('triplist')">
+            <i class="ion-arrow-left-a"></i>
+        </button>
+    </ion-nav-back-button>
+    <ion-nav-buttons side="secondary">
+
+        <button class="button" ng-click="openRightSideMenu()">
+            <i class="ion-navicon-round"></i>
+        </button>
+
+    </ion-nav-buttons>
+
+</ion-nav-bar>
+    <ion-side-menus>
+
+        <ion-side-menu-content>
+<ion-view  title="Trip Details">
+
+
+
+    <ion-tabs class="tabs-stable tabs-icon-top">
+        <ion-tab title="Team" icon="ion-android-people">
+            <ion-content>
+                <spacer></spacer>
+                <ion-list   >
+
+
+                    <ion-item  ng-repeat="t in teams" class="card padding" >
+                         <img  style="float:left;height:100px;padding-right:10px" src="{{url + t.tmImage.value}}" >
+                        <div style="margin:10px">
+                            <b>{{t.Name.value}}</b>
+                            <p style="font-size:10px">{{t.tmdesignation.value}}</p>
+                            <a class="button icon-left ion-ios7-telephone button-dark" ng-href="tel: {{ t.tmContactNo.value}}">Call {{t.tmContactNo.value}}</a>
+                            </div>
+                        <a class="item item-icon-left assertive" ng-click="openModal2(t)" href="#">
+                            <i class="icon ion-android-funnel"></i>
+                            Profile
+
+                        </a>
+                    </ion-item>
+
+                </ion-list>
+        </ion-tab>
+        <ion-tab title="Emergency" icon="ion-ios-telephone">
+            <ion-content >
+                <spacer></spacer>
+                <div ng-repeat="c in contactnos" class="list card">
+
+                    <div class="item item-button-right">
+                        {{c.title}}
+                        <a href = "tel:// {{c.properties.cnNumber}}"class="button button-dark">
+                            <i style="width:30px" class="icon ion-ios-telephone"></i>
+                        </a>
+                    </div>
+
+
+
+
+                </div>
+            </ion-content>
+            </ion-content>
+        </ion-tab>
+        <ion-tab title="Trip Brief" icon="ion-ios-briefcase">
+
+                <ion-tabs  id="s2" style="top:50px;padding;20px">
+                    <ion-tab style="height:100px" title="Times" icon="ion-plane">
+                        <ion-content style="top:120px;">
+                           <ion-item class="list card">
+                                     <b>Arrival</b>
+                            <div class="row"><div class="col">Airport</div><div class="col">{{tripdetails.arrivalAirport.value}}</div></div>
+                            <div class="row"><div class="col">When</div><div class="col">{{tripdetails.arrivalDateTime.value}}</div></div>
+                               <div class="row"> <div class="col">Flight Number</div><div class="col"><a class="item item-icon-left assertive" ng-click="openModalFlightStats(tripdetails.arrivalFlightNo,tripdetails.arrivalDateTime)" href="#">
+                                   <i class="icon ion-android-plane"></i>
+                                   {{tripdetails.arrivalFlightNo.value}}
+
+                               </a></div></div>
+                           </ion-item>
+                            <ion-item class="list card">
+                                <b>Departure</b>
+                                <div class="row"><div class="col">Airport</div><div class="col">{{tripdetails.arrivalAirport.value}}</div></div>
+                                <div class="row"><div class="col">When</div><div class="col">{{tripdetails.arrivalDateTime.value}}</div></div>
+                                <div class="row"> <div class="col">Flight Number</div><div class="col"><a class="item item-icon-left assertive" ng-click="openModalFlightStats(tripdetails.arrivalFlightNo,tripdetails.arrivalDateTime)" href="#">
+                                    <i class="icon ion-android-plane"></i>
+                                    {{tripdetails.arrivalFlightNo.value}}
+
+                                </a></div></div>
+                            </ion-item>
+                                               </ion-content>
+                    </ion-tab>
+                    <ion-tab  title="General" icon="ion-information-circled">
+                        <ion-content>
+                            <spacer></spacer>
+                            <ion-item class="list card">
+                            <div ng-bind-html="tripdetails.tripBrief.value"></div>
+                            </ion-item>
+                        </ion-content>
+                    </ion-tab>
+                    <ion-tab title="Weather" icon="ion-umbrella">
+                        <ion-content>
+                            <spacer></spacer>
+                            <ion-item style="padding:0px" class="list card">
+                           <img style="width:100%"  src="{{url + country.properties.countryWeather.value}}">
+                            </ion-item>
+                        </ion-content>
+                    </ion-tab>
+                    <ion-tab title="Electricity" icon="ion-ios-bolt">
+                        <ion-content>
+                            <spacer></spacer>
+                            <ion-item style="padding:0px" class="list card">
+
+                                <img style="width:100%"  src="{{url + country.properties.countryElectricalImage.value}}"><br />
+                                <b>Electrical Outlets</b>
+                                <p></p>
+                                <div ng-bind-html="country.properties.countryElectrical.value"></div>
+                            </ion-item>
+                        </ion-content>
+                    </ion-tab>
+                    <ion-tab ng-if="showops" title="Operational Plan" icon="ion-android-compass">
+                        <ion-content style="top:150px" >
+
+                                <ion-list >
+
+                                    <ion-item ng-click="openModal(o.title)" class=" item-icon-right" ng-repeat ="o in ops">
+                                        <i class="icon ion-chevron-right"> </i>
+                                        {{o.title}}
+
+                                    </ion-item>
+
+                            </ion-list>
+
+
+
+                        </ion-content>
+
+            </ion-tabs>
+
+
+
+
+        </ion-tab>
+
+        <ion-tab style="background-color: #dddddd;" title="Suggestions" icon="ion-chatbox" >
+            <ion-content>
+                <div class="spacer" style="height:150px"></div>
+
+                    <textarea  rows="10" style="width:100%;background-color: #dddddd;padding:10px" placeholder="Write your suggestion here" ng-model="body" ></textarea>
+                    <button ng-click="sendSMS()" class="button button-dark button-block  icon-left  button-full" >Submit Suggestion</button>
+
+            </ion-content>
+        </ion-tab>
+
+
+    </ion-tabs>
+        </ion-side-menu-content>
+        <!-- Right menu -->
+        <ion-side-menu side="right" enable-menu-with-back-views="true">
+            <ion-content class="has-header header-menu">
+                <triplist-side-menu></triplist-side-menu>
+            </ion-content>
+        </ion-side-menu>
+
+    </ion-side-menus>
+
+
+    <script id="modal.html" type="text/ng-template">
+        <div class="modal">
+
+            <ion-content>
+
+               <div ng-show="showhtml" style="padding:15px" ng-bind-html="html"></div>
+                <div ng-show="showimages" style="padding:15px"  ng-repeat=" h in immagearray">
+                    <img style="width:100%" src="{{url + h}}" />
+                </div>
+
+
+            </ion-content>
+            <ion-footer-bar style="padding:0px">
+                <button style="margin:0px;padding:0px" class="button button-full button-dark" ng-click="closeModal()">Done</button>
+
+            </ion-footer-bar>
+        </div>
+    </script>
+
+    <script id="profile-modal.html" type="text/ng-template">
+        <div class="modal">
+
+            <ion-content>
+                <ion-item ng-bind-html="tmprofile" class="card padding item-text-wrap" >
+
+
+
+                </ion-item>
+
+            </ion-content>
+            <ion-footer-bar style="padding:0px">
+                <button style="margin:0px;padding:0px" class="button button-full button-dark" ng-click="closeModal2()">Done</button>
+
+            </ion-footer-bar>
+        </div>
+    </script>
+    <script id="flightstats-modal.html" type="text/ng-template">
+        <div class="modal">
+
+            <ion-content>
+                <ion-item  class="card padding item-text-wrap" >
+
+                    flightstats
+
+
+                </ion-item>
+
+            </ion-content>
+            <ion-footer-bar style="padding:0px">
+                <button style="margin:0px;padding:0px" class="button button-full button-dark" ng-click="closeModalFlightStats()">Done</button>
+
+            </ion-footer-bar>
+        </div>
+    </script>
+</ion-view>
+</div>
+<style>
+
+     ul {
+        margin-top: 10px;
+         padding:10px;
+         list-style: disc;
+    }
+   ul li {
+       overflow:hidden;
+       white-space:normal;
+       word-wrap:normal;
+       list-style: disc;
+       list-style-type: circle;
+       list-style-position: inside;
+       margin-bottom:10px;
+       padding-left: 1em;
+       text-indent: -1em;
+
+    }
+     ol li {
+         overflow:hidden;
+         white-space:normal;
+         word-wrap:normal;
+         list-style-type: decimal;
+         list-style-position: inside;
+         font-size:12px;
+         margin-bottom:10px;
+         padding-left: 1em;
+         text-indent: -1em;
+
+     }
+     #s2 div.tab-nav.tabs
+     {
+     height:77px;
+         font-size:9px;
+     }
+     #s2 .tab-title
+     {
+
+         font-size:9px;
+     }
+     .pane{
+
+          background: url("img/login.png") no-repeat center center fixed !important;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          background-size: cover;
+      }
+
+</style>

@@ -1,0 +1,31 @@
+﻿
+<ion-nav-view >
+    <ion-view title="Options"  >
+   
+        <ion-content padding="false"  has-header="false" ng-controller="DemoCtrl" >
+
+            <logo></logo>
+
+            <form>
+
+                <div class="spacer" style="height: 40px;"></div>
+                <button ng-click="showAlert()" class="button button-light button-block  button-full"><img height="100px" src="img/sos.png"></button>
+                <button ng-if="admin" ng-click='goNext("admin")' class="button button-light button-block   button-full">Admin</button>
+                <button ng-show="tripmanagement" ng-click='goNext("triplist")' class="button button-light button-block   button-full"><b style="color:#850807">Trip Management</b></button>
+                <button ng-show="securedrive" ui-sref="secureDriveList" class="button button-light button-block  button-full"><b style="color:#850807">Secure Drive</b></button>
+
+            </form>
+        </ion-content>
+        </ion-view>
+</ion-nav-view>
+
+
+<style>
+    .pane{
+
+        background: url("img/login.png") no-repeat center center fixed !important;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    }
+</style>

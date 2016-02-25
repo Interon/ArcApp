@@ -1,0 +1,41 @@
+﻿
+
+<ion-view ng-controller="operationController">
+    <ion-nav-bar  class="bar bar-header bar-dark">
+        <ion-nav-back-button   ng-click="goTo('tripdetails')">
+            <i class="ion-arrow-left-c">Back</i>
+        </ion-nav-back-button>
+
+    </ion-nav-bar>
+
+
+    <ion-content    has-header="false" has-tabs="false" padding="false" scroll="true" direction="xy">
+
+        <div class="button-bar">
+            <button  class="button icon-left ion-ios-search">Scope and Purpose</button>
+            <button class="button icon-left ion-ios-personadd">Personel Asignment</button>
+            <button class="button icon-left ion-ios-people">Team</button>
+
+        </div>
+        <div class="button-bar">
+            <button  class="button icon-left ion-medkit">Medical</button>
+            <button class="button icon-left ion-map">Maps and Images</button>
+            <button class="button icon-left ion-nuclear">Risk Factors</button>
+
+        </div>
+    </ion-content>
+
+
+</ion-view>
+
+
+
+<style>
+    .pane{
+
+        background: url("img/login.png") no-repeat center center fixed !important;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    }
+</style>

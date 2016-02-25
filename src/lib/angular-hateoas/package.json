@@ -1,0 +1,56 @@
+{
+  "name": "angular-hateoas",
+  "description": "An AngularJS module for using $resource with a HATEOAS-enabled REST API.",
+  "version": "0.2.5",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmarquis/angular-hateoas.git"
+  },
+  "main": "src/angular-hateoas.js",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "^0.7.0",
+    "grunt-karma": "^0.10.1",
+    "jasmine-core": "^2.2.0",
+    "karma": "^0.12.31",
+    "karma-chrome-launcher": "^0.1.2",
+    "karma-coffee-preprocessor": "^0.2.1",
+    "karma-firefox-launcher": "^0.1.3",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "~0.1.0",
+    "karma-requirejs": "^0.2.1",
+    "requirejs": "^2.1.11"
+  },
+  "dependencies": {},
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/jmarquis/angular-hateoas/blog/master/LICENSE"
+  },
+  "gitHead": "7d3e817b2e592202ef8ac2279d1d509ada4b4e03",
+  "bugs": {
+    "url": "https://github.com/jmarquis/angular-hateoas/issues"
+  },
+  "homepage": "https://github.com/jmarquis/angular-hateoas",
+  "_id": "angular-hateoas@0.2.5",
+  "scripts": {},
+  "_shasum": "3c807d26be925fb9a09dbc9d5d9a8e801417966e",
+  "_from": "angular-hateoas@*",
+  "_npmVersion": "2.0.2",
+  "_nodeVersion": "0.10.30",
+  "_npmUser": {
+    "name": "jeremymarquis",
+    "email": "jeremy@jeremymarquis.com"
+  },
+  "maintainers": [
+    {
+      "name": "jeremymarquis",
+      "email": "jeremy@jeremymarquis.com"
+    }
+  ],
+  "dist": {
+    "shasum": "3c807d26be925fb9a09dbc9d5d9a8e801417966e",
+    "tarball": "http://registry.npmjs.org/angular-hateoas/-/angular-hateoas-0.2.5.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/angular-hateoas/-/angular-hateoas-0.2.5.tgz"
+}

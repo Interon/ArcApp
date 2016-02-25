@@ -1,0 +1,27 @@
+<ion-nav-bar class="bar bar-header bar-dark">
+
+    <ion-nav-back-button>
+        <button class="button"  ng-click="goTo('demo')">
+            <i class="ion-arrow-left-a"></i>
+        </button>
+    </ion-nav-back-button>
+
+</ion-nav-bar>
+<ion-view ng-controller="SmsCtrl" title="Emergency Button">
+
+
+
+
+    <ion-content padding="false" class="has-header">
+
+
+        <div class="spacer" style="height: 100px;"></div>
+        <form>
+
+            <div class="spacer" style="height: 40px;"></div>
+            <button ng-click="sms()" class="button button-dark button-block  icon-left ion-android-lock button-full">Only Press in an Emergency</button>
+
+        </form>
+    </ion-content>
+
+</ion-view>

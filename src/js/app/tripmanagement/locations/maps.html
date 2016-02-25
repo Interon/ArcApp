@@ -1,0 +1,63 @@
+﻿
+
+
+<ion-view ng-controller="MapCtrl" view-title="Ionic angular-google-maps Example">
+    <ion-nav-bar  class="bar bar-header bar-dark">
+        <ion-nav-back-button  ng-cloak  ui-sref="tripdetails({Id:{{Id}}})">
+            <i class="ion-arrow-left-c">Back</i>
+        </ion-nav-back-button>
+
+    </ion-nav-bar>
+    <ion-content style="top:30px" class="padding">
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' control="mapControl">
+            <ui-gmap-markers models="markers" coords="'self'" click="showInfo">
+                <ui-gmap-window    closeClick="hideInfo()" >
+                    <div>
+                        {{Details.name}}
+                        <a href = "tel:// {{Details.international_phone_number}}"class="button button-dark">
+                            <i style="width:30px" class="icon ion-ios-telephone"></i>
+                        </a>
+                        <a target="_blank" href="{{Details.website}}">{{infoBusiness.title}}</a>
+                    </div>
+                </ui-gmap-window>
+
+            </ui-gmap-markers>
+
+
+
+        </ui-gmap-google-map>
+
+        <div class="button-bar">
+            <button ng-click="search('Restaurants')" class="button icon-left ion-fork">Restaurants</button>
+            <button ng-click="search('Bars')" class="button icon-left ion-beer">Bars</button>
+            <button ng-click="search('Restaurants')" class="button icon-left ion-coffee">Coffee Shops</button>
+
+        </div>
+        <div class="button-bar">
+            <button  ng-click="search('Hospitals')" class="button icon-left ion-medkit">Hospitals</button>
+            <button ng-click="search('Police')" class="button icon-left ion-star">Police</button>
+            <button  ng-click="search('Embasy')" class="button icon-left ion-information-circled">Embassy</button>
+
+        </div>
+
+    </ion-content>
+</ion-view>
+<style>
+    .pane{
+
+        background: url("img/login.png") no-repeat center center fixed !important;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    }
+</style>
+
+
+
+
+
+
+
+
+
+

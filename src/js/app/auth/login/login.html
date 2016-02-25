@@ -1,0 +1,73 @@
+<ion-view>
+  <ion-content has-header="false" has-tabs="false" padding="false" scroll="true">
+
+    <form name="vm.form" novalidate="">
+
+      <logo ng-hide="hidelogo"></logo>
+
+      <div class="list list-inset">
+
+        <span class="note item item-borderless" translate="prompt.login"></span>
+
+        <label class="item item-input first-field">
+          <i class="icon ion-ios-person-outline placeholder-icon field-icon"></i>
+          <input type="email"
+                 placeholder="Email" translate translate-attr-placeholder="field.login-email"
+                 ng-model="vm.user.username"
+                 form-field="vm.form.email"
+                 name="email"
+                 ng-minlength="5"
+                 ng-maxlength="50"
+                 ng-focus="focus()"
+                 ng-blur="blur()"
+                  >
+        </label>
+
+        <div fus-messages="vm.form.email">
+          <div ng-messages-include="js/app/util/templates/form-errors.html"></div>
+        </div>
+
+        <label class="item item-input">
+          <i class="icon ion-ios-locked-outline placeholder-icon field-icon"></i>
+          <input type="password"
+                 placeholder="Password" translate translate-attr-placeholder="field.login-password"
+                 ng-model="vm.user.password"
+                 form-field="vm.form.password"
+                 name="password"
+                 ng-minlength="5"
+                 required
+                 ng-focus="focus()"
+                 ng-blur="blur()"
+                 >
+        </label>
+
+        <div fus-messages="vm.form.password">
+          <div ng-messages-include="js/app/util/templates/form-errors.html"></div>
+        </div>
+
+        <!--<div class="item-note padding" ng-click="vm.forgot()" translate>link.forgot-password</div>-->
+
+        <form-errors/>
+      </div>
+
+      <div class="text-center padding-top">
+        <button name="login" class="button button-outline button-light button-full" ng-click="vm.login(vm.form)" translate>
+          button.login
+        </button>
+
+
+      </div>
+
+    </form>
+
+  </ion-content>
+</ion-view>
+<style>
+    .pane{
+
+        background: url("img/login.png") no-repeat center center fixed !important;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    }
+</style>

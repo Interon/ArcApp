@@ -1,0 +1,61 @@
+<ion-view>
+  <ion-content has-header="false" has-tabs="false" padding="false" scroll="true">
+
+    <form name="vm.form" novalidate="">
+
+     <logo></logo>
+
+      <div class="list">
+
+        <span class="note item item-borderless" translate="prompt.signup"></span>
+
+        <label class="item item-input first-field">
+          <i class="icon ion-ios-person-outline placeholder-icon field-icon"></i>
+          <input type="email"
+                 placeholder="Email" translate translate-attr-placeholder="field.email"
+                 ng-model="vm.user.email"
+                 form-field="vm.form.email"
+                 name="email"
+                 ng-minlength="5"
+                 ng-maxlength="50"
+                 required>
+        </label>
+
+        <div fus-messages="vm.form.email">
+          <div ng-messages-include="js/app/util/templates/form-errors.html"></div>
+        </div>
+
+        <label class="item item-input">
+          <i class="icon ion-ios-locked-outline placeholder-icon field-icon"></i>
+          <input type="password"
+                 placeholder="Password" translate translate-attr-placeholder="field.password"
+                 ng-model="vm.user.password"
+                 form-field="vm.form.password"
+                 name="password"
+                 ng-model="user.password"
+                 ng-minlength="5"
+                 ng-maxlength="50"
+                 required>
+        </label>
+
+        <div fus-messages="vm.form.password">
+          <div ng-messages-include="js/app/util/templates/form-errors.html"></div>
+        </div>
+
+        <form-errors/>
+      </div>
+
+      <div class="text-center padding-top">
+
+        <button class="button button-full button-primary" ng-click="vm.signup(vm.form)"
+                translate>button.signup
+        </button>
+
+        <span class="note padding" translate>prompt.have-an-account</span><span
+          class="link padding" ui-sref="login" translate>link.login</span>
+      </div>
+
+    </form>
+
+  </ion-content>
+</ion-view>

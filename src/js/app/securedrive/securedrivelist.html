@@ -1,0 +1,179 @@
+﻿
+
+    <ion-nav-bar class="bar bar-header bar-dark">
+
+        <ion-nav-back-button>
+            <button class="button"  ng-click="goTo('demo')">
+                <i class="ion-arrow-left-a"></i>
+            </button>
+        </ion-nav-back-button>
+
+    </ion-nav-bar>
+
+    
+    <ion-view ng-controller="securedriveListCtrl" cache-view="true" title="Tip List"  hide-nav-bar="false">
+
+                <ion-tabs class="tabs-stable tabs-icon-top">
+
+                    <ion-tab title="Trip" icon="ion-model-s">
+                        <ion-content padding="false" has-header="false">
+                            <div class="spacer" style="height: 100px;"></div>
+
+
+
+                                <ion-list>
+                                    <ion-item ng-repeat="item in items" class="card padding">
+
+                                        <div class="item ">
+                                            <driverimage mystyle="height:75px;margin:10px;float:left" nodeid="{{item.properties.driver.value}}"></driverimage>
+                                            <h2>{{item.title}}</h2>
+                                            <p>Trip Start :   {{item.properties.secureDriveStartTime.value}}</p>
+                                            <p>Trip End   :   {{item.properties.secureDriveEndTime.value}}</p>
+                                        </div>
+
+                                        <div class="item item-image">
+                                            <driver nodeid="{{item.properties.driver.value}}"></driver>
+
+                                        </div>
+
+                                        <a class="item item-icon-left assertive" ng-click="openModal1(item.properties.driver.value)"  href="#">
+                                            <i class="icon ion-model-s"></i>
+                                           Vehicle Details
+
+                                        </a>
+                                        <a class="item item-icon-left assertive" ng-click="openModal2(item.properties.team.value)" href="#">
+                                            <i class="icon ion-ios-people"></i>
+                                            Team
+
+                                        </a>
+                                        <a class="item item-icon-left assertive" ng-click="openModal3(item.title)" href="#">
+                                            <i class="icon ion-android-list"></i>
+                                            Survey
+
+                                        </a>
+                                    </ion-item>
+                                </ion-list>
+
+
+
+
+
+
+
+
+
+
+                        </ion-content>
+                    </ion-tab>
+                    <ion-tab title="General" icon="ion-ios-telephone">
+                        <ion-content padding="true" class="has-header">
+                            <div class="spacer" style="height: 100px;"></div>
+
+
+
+                            <div ng-repeat="c in ContactNumbers" class="list card">
+
+                                <div class="item item-button-right">
+                                    {{c.properties.cnDescription.value}}
+                                    <a href = "tel:// {{c.properties.cnNumber.value}}"class="button button-dark">
+                                        <i style="width:30px" class="icon ion-ios-telephone"></i>
+                                    </a>
+                                </div>
+
+
+
+
+                            </div>
+                        </ion-content>
+
+                    </ion-tab>
+
+
+
+                </ion-tabs>
+
+
+
+
+
+</ion-view>
+
+    <script id="team-modal.html" type="text/ng-template">
+        <div class="modal">
+
+            <ion-content>
+
+                <ion-list   >
+
+
+                    <ion-item  ng-repeat="t in teamarray" class="card padding" >
+                        <div class="ng-isolate-scope">
+                            <teammember nodeid="{{t}}"></teammember>
+                        </div>
+                    </ion-item>
+
+                </ion-list>
+
+            </ion-content>
+            <ion-footer-bar style="padding:0px">
+                <button style="margin:0px;padding:0px" class="button button-full button-dark" ng-click="closeModal2()">Done</button>
+
+            </ion-footer-bar>
+        </div>
+    </script>
+
+
+
+
+
+    <script id="car-modal.html" type="text/ng-template">
+        <div class="modal">
+
+            <ion-content>
+                <ion-item  class="card padding" >
+
+                    <img style="margin:10px;height:150px" src="{{url + teammemberdata.TmVehicalImage}}"><br />
+                    <b>{{teammemberdata.TmVehicalDescription}}</b>
+                    RegNo: {{teammemberdata.TmVehicalRegNo}}
+                </ion-item>
+
+            </ion-content>
+            <ion-footer-bar style="padding:0px">
+                <button style="margin:0px;padding:0px" class="button button-full button-dark" ng-click="closeModal1()">Done</button>
+
+            </ion-footer-bar>
+        </div>
+    </script>
+
+
+
+
+
+    <script id="survey-modal.html" type="text/ng-template">
+        <div class="modal">
+
+            <ion-scroll zooming="false" direction="y" style="width: {{w}}px; height: {{h + 200}}px">
+                <iframe id="f" src="{{secureDriveSurveyMonkeyUrl}}" ng-onload="iframeload()" style="width:{{w}}px;height:{{h -20}}px"></iframe>
+                <!--<ion-list>-->
+                    <!--<ion-item  ng-repeat="q in questions" class="card padding" >-->
+                       <!--<b>{{q.title}}</b>-->
+                        <!--<ion-radio ng-model="choice" ng-value="'Yes'">Yes</ion-radio>-->
+                        <!--<ion-radio ng-model="choice" ng-value="'No'">No</ion-radio>-->
+                    <!--</ion-item>-->
+                <!--</ion-list>-->
+            </ion-scroll>
+            <ion-footer-bar style="padding:0px">
+                <button style="margin:0px;padding:0px" class="button button-full button-dark" ng-click="closeModal3()">Done</button>
+
+            </ion-footer-bar>
+        </div>
+    </script>
+    <style>
+        .pane,.modal{
+
+            background: url("img/login.png") no-repeat center center fixed !important;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+        }
+    </style>

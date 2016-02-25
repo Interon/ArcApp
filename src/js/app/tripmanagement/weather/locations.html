@@ -1,0 +1,45 @@
+<ion-view ng-controller="LocationsController" view-title="Locations">
+  <ion-content>
+    <div class="card">
+      <div class="item item-divider item-icon-left">
+        <i class="icon ion-map"></i><span>Add location</span>
+      </div>
+      <div class="item item-text-wrap">
+        <div class="list">
+          <label id="location-label" class="item item-input">
+            <ion-spinner ng-show="showSpinner" icon="dots"></ion-spinner>
+            <input type="text" placeholder="Location" ng-model="tb">
+          </label>
+
+          <div class="button-bar">
+            <button ng-disabled="showSpinner" class="button icon-left ion-pinpoint " ng-click="getCurrentLocation()">
+              Get location
+            </button>
+            <button ng-disabled="showSpinner" class="button icon-left ion-ios-plus-outline "
+                    ng-click="addLocation(tb)">
+              Add location
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-show="locations.length>0" class="card">
+      <div class="item item-divider item-icon-left">
+        <i class="icon ion-earth"></i><span>Your locations</span>
+      </div>
+      <div class="item">
+        <ion-list show-delete="true"
+                  show-reorder="false"
+                  can-swipe="true">
+          <ion-item ng-repeat="location in locations"
+                    class="">
+            <h2>{{location}}</h2>
+            <ion-delete-button class="ion-trash-a"
+                               ng-click="removeLocation(location)"></ion-delete-button>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+

@@ -1,0 +1,7 @@
+﻿<ion-item ng-repeat="d in driver |limitTo:1" class="card padding">
+
+            <b>Driver Name :{{d.title}}</b><p></p>
+            <a class="button icon-left ion-ios7-telephone button-dark" ng-href="tel: {{ d.properties.TmContactNo}}">Call {{ d.properties.TmContactNo}}</a>
+
+</ion-item>
+

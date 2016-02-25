@@ -1,0 +1,29 @@
+
+
+
+{
+  "name": "app.config",
+  "constants": {
+    "APP": {
+      "routerDefaultState": "demo"
+    },
+    "ParseConfiguration": {
+      "applicationId": "applicationId",
+      "javascriptKey": "javascriptKey"
+    },
+    "FirebaseConfiguration": {
+      "url": "http://arcapp.firebaseio.com"
+    },
+    "ionicIO": {
+      "appId": "appId",
+      "apiKey": "apiKey"
+    },
+    "Server": {
+      "url": "http://arcapp.interon.co.za"
+    }
+
+
+
+
+  }
+}

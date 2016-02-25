@@ -1,0 +1,87 @@
+﻿<div ng-controller="tripListCtrl">
+
+    <ion-nav-bar style="height:44px" class="bar bar-header bar-dark">
+
+        <ion-nav-back-button>
+            <button class="button"  ng-click="goTo('demo')">
+                <i class="ion-arrow-left-a"></i>
+            </button>
+        </ion-nav-back-button>
+
+    </ion-nav-bar>
+
+    
+    <ion-view title="Tip List"  hide-nav-bar="false">
+
+                <ion-tabs  class="tabs-stable tabs-icon-top">
+
+                    <ion-tab title="Trip" icon="ion-jet">
+                        <ion-content padding="false" class="has-header">
+                            <div class="spacer" style="height: 100px;"></div>
+
+
+                        <ion-list  class="list card">
+                            <ion-item ui-sref="tripdetails({Id:{{t.properties.Id.value}}})" ng-repeat = "t in triplist " class="item item-avatar" >
+
+                            <img src= "{{url +countries[$index].properties.buttonFlag.value}}">
+
+                                <b>{{t.title}}</b>
+                                <p ng-show="showclient">Arrival:{{t.properties.arrivalDateTime.value}}</p>
+                                <p ng-show="showclient">Departure:{{t.properties.departureDateTime.value}}</p>
+                            </ion-item>
+
+                        </ion-list>
+
+
+                        </ion-content>
+                    </ion-tab>
+                    <ion-tab title="General" icon="ion-ios-telephone">
+                        <ion-content padding="true" class="has-header">
+                            <div class="spacer" style="height: 100px;"></div>
+                            <div style="width:100%;text-align:center">
+                               <logo></logo>
+                            </div>
+                            <div class="list card">
+
+                                <div class="item item-icon-right">
+                                    Arcfyre Head Office
+                                    <a style="float:right" href = "tel:// +27 11 794 9990">
+                                        <i style="width:30px" class="icon ion-ios-telephone dark"></i>
+                                   </a>
+                                </div>
+
+
+
+
+                            </div>
+                        </ion-content>
+
+                    </ion-tab>
+                    <ion-tab title="About" icon="ion-ios-information">
+                        <ion-content padding="true" class="has-header">
+
+                            <div class="spacer" style="height: 100px;"></div>
+                            <div style="width:100%;text-align:center">
+                                <logo></logo>
+                            </div>
+                            <h4>General infromation</h4>
+                            <p>Thank you for using the ArcFyre App</p>
+                        </ion-content>
+                    </ion-tab>
+
+                    </ion-tab>
+                </ion-tabs>
+
+       
+
+</ion-view>
+</div>
+<style>
+    .pane{
+
+        background: url("img/login.png") no-repeat center center fixed !important;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    }
+</style>

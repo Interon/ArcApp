@@ -1,0 +1,107 @@
+
+
+<ion-view  >
+    <ion-nav-bar  class="bar bar-header bar-dark">
+        <ion-nav-back-button   ui-sref="tripdetails({Id:{{Id}}})">
+            <i class="ion-arrow-left-c">Back</i> 
+        </ion-nav-back-button>
+    </ion-nav-bar>
+  <ion-content ng-controller="LocationsController" >
+
+      <div >
+    <div ng-show="noLocation" class="card">
+      <div class="item item-text-wrap">
+        <div class="item item-icon-left">
+          <i class="icon ion-information-circled"></i>
+
+          <p>There are currently <b>no locations</b> available.</p>
+
+          <p>Feel free to add new locations in the 'Locations' section.</p>
+        </div>
+      </div>
+    </div>
+    <div ng-show="errorLocationRetrieval" class="card">
+      <div class="item item-text-wrap">
+        <div class="item item-icon-left">
+          <i class="icon ion-alert-circled"></i>
+
+          <p>Cannot load any weather data, due to a <b>connection error</b>.</p>
+
+          <p>Please make sure you have access to the internet and that no firewall is blocking requests.</p>
+        </div>
+      </div>
+    </div>
+    <div id="weather-list" ng-hide="noLocation" ng-repeat="weatherdata in locationData" class="card">
+      <div class="item item-divider icon-left weatherlist-title">
+        <img ng-src="{{weatherdata.weather[0].icon}}"><span>{{weatherdata.name}}, {{weatherdata.sys.country}} - {{weatherdata.weather[0].description}}</span>
+      </div>
+      <div class="item item-text-wrap">
+        <div class="item">
+          <div class="row">
+            <div class="col"><h2>Temperature:</h2></div>
+            <div class="col col-30">{{weatherdata.main.temp}} &deg;C</div>
+          </div>
+          <div class="row">
+            <div class="col"><h2>Min. Temp.:</h2></div>
+            <div class="col col-30">{{weatherdata.main.temp_min}} &deg;C</div>
+          </div>
+          <div class="row">
+            <div class="col"><h2>Max. Temp.:</h2></div>
+            <div class="col col-30">{{weatherdata.main.temp_max}} &deg;C</div>
+          </div>
+          <div class="row">
+            <div class="col"><h2>Humidity:</h2></div>
+            <div class="col col-30">{{weatherdata.main.humidity}} %</div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+      <div >
+          <div class="card">
+              <div class="item item-divider item-icon-left">
+                  <i class="icon ion-map"></i><span>Add location</span>
+              </div>
+              <div class="item item-text-wrap">
+                  <div class="list">
+                      <label id="location-label" class="item item-input">
+                          <ion-spinner ng-show="showSpinner" icon="dots"></ion-spinner>
+                          <input type="text" placeholder="Location" ng-model="tb">
+                      </label>
+                      <div class="button-bar">
+                          <button ng-disabled="showSpinner" class="button icon-left ion-pinpoint " ng-click="getCurrentLocation()">
+                              Get location
+                          </button>
+                          <button ng-disabled="showSpinner" class="button icon-left ion-ios-plus-outline "
+                                  ng-click="addLocation(tb)">
+                              Add location
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div ng-show="locations.length>0" class="card">
+              <div class="item item-divider item-icon-left">
+                  <i class="icon ion-earth"></i><span>Your locations</span>
+              </div>
+              <div class="item">
+                  <ion-list show-delete="true"
+                            show-reorder="false"
+                            can-swipe="true">
+                      <ion-item ng-repeat="location in locations"
+                                class="">
+                          <h2>{{location}}</h2>
+                          <ion-delete-button class="ion-trash-a"
+                                             ng-click="removeLocation(location)"></ion-delete-button>
+                      </ion-item>
+                  </ion-list>
+              </div>
+          </div>
+      </div>
+  </ion-content>
+</ion-view>
+
+
+
+
+
