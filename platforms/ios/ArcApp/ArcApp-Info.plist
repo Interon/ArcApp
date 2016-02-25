@@ -66,9 +66,9 @@
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleVersion</key>
-    <string>980</string>
+    <string>1072</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.0.98</string>
+    <string>1072</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSMainNibFile</key>
@@ -195,27 +195,10 @@
       <string>UIInterfaceOrientationPortrait</string>
     </array>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Show your location on the map</string>
+    <string/>
     <key>UIBackgroundModes</key>
     <array>
       <string>remote-notification</string>
-    </array>
-    <key>Google Maps API Key</key>
-    <string>AIzaSyBjREFs_sZJpD8WN5kHKsxeRBIDLgxaaeE</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Trace your location on the map</string>
-    <key>CFBundleURLTypes</key>
-    <array>
-      <dict>
-        <key>CFBundleTypeRole</key>
-        <string>Editor</string>
-        <key>CFBundleURLName</key>
-        <string>co.za.interon.arcapp</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>co.za.interon.arcapp</string>
-        </array>
-      </dict>
     </array>
   </dict>
 </plist>

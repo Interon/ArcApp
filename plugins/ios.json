@@ -61,9 +61,6 @@
         "phonegap-plugin-push": {
             "PACKAGE_NAME": "co.za.interon.arcapp"
         },
-        "plugin.google.maps": {
-            "PACKAGE_NAME": "co.za.interon.arcapp"
-        },
         "plugin.http.request": {
             "PACKAGE_NAME": "co.za.interon.arcapp"
         }

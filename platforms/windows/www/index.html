@@ -1,6 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+<script src="winstore-jscompat/winstore-jscompat.js"></script>
+
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
@@ -16,8 +18,8 @@
     https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
     http://stackoverflow.com/questions/30212306/no-content-security-policy-meta-tag-found-error-in-my-phonegap-application
   -->
-  <meta http-equiv="Content-Security-Policy"
-        content="default-src &apos;self&apos; * https://cdnjs.cloudflare.com cdnjs.cloudflare.com bulksms.2way.co.za 2way.co.za  https://api.flightstats.com/ http://bulksms.2way.co.za/ interon.co.za arcapp.interon.co.za data: bulksms.2way.co.za/ gap: https://ssl.gstatic.com &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;; style-src &apos;self&apos; &apos;unsafe-inline&apos;; media-src *">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src &apos;self&apos; * https://cdnjs.cloudflare.com cdnjs.cloudflare.com bulksms.2way.co.za 2way.co.za  https://api.flightstats.com/ http://bulksms.2way.co.za/ interon.co.za arcapp.interon.co.za  http://arcapp.interon.co.za  https://arcapp.interon.co.za data: bulksms.2way.co.za/ gap: https://ssl.gstatic.com &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;; style-src &apos;self&apos; &apos;unsafe-inline&apos;; media-src *">
 
   <title></title>
 
@@ -25,8 +27,7 @@
   <link rel="stylesheet" href="css/ionic.app.min.css">
 
   <script src="lib/lodash/lodash.min.js"></script>
-
-  <!--
+   <!--
       For DEV we can use ionic.bundle.js (non-minified) to debug moduleErr errors, see:
       http://www.chrisgmyr.com/2014/08/debugging-uncaught-error-injectormodulerr-in-angularjs/
 
@@ -73,8 +74,7 @@
   <script src="lib/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
   <script src="lib/angular-hateoas/build/angular-hateoas.min.js"></script>
   <script src="lib/winstor-jscompat/winstore-jscompat.js"></script>
-  <!--<script src="lib/cordova-hot-code-push-plugin/www/chcp.js"></script>-->
-  <!--<script src="lib/cordova-hot-code-push-local-dev-addon/www/chcpLocalDev.js" ></script>-->
+
 
   <script src="lib/restangular/restangular.js"></script>
   <script src="lib/angular-ios9-uiwebview.patch.js"></script>
@@ -135,7 +135,7 @@
 </head>
 
 <!-- NOTE: "ng-strict-di" will be added to the body tag during a production build (see gulp.js) -->
-<body ng-strict-di fullscreen ng-app="app" ng-controller="ApplicationCtrl as main">    <!-- ApplicationCtrl: global/default controller -->
+<body ng-strict-di style="background-color: black" fullscreen ng-app="app" ng-controller="ApplicationCtrl as main" class="platform-windows platform-cordova platform-webview">    <!-- ApplicationCtrl: global/default controller -->
   <!--
     The views will be rendered in the <ion-nav-view> directive below
   -->

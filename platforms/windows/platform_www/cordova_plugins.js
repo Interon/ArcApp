@@ -195,14 +195,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/plugin.google.maps/www/googlemaps-cdv-plugin.js",
-        "id": "plugin.google.maps.phonegap-googlemaps-plugin",
-        "pluginId": "plugin.google.maps",
-        "clobbers": [
-            "plugin.google.maps"
-        ]
-    },
-    {
         "file": "plugins/plugin.http.request/www/http-request.js",
         "id": "plugin.http.request.phonegap-http-requst",
         "pluginId": "plugin.http.request",
@@ -232,7 +224,6 @@ module.exports.metadata =
     "org.apache.cordova.device": "0.3.0",
     "org.apache.cordova.splashscreen": "1.0.0",
     "phonegap-plugin-push": "1.5.2",
-    "plugin.google.maps": "1.3.4",
     "plugin.http.request": "1.0.4"
 }
 // BOTTOM OF METADATA
