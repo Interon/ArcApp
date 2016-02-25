@@ -17,6 +17,59 @@
     <feature name="Vibration">
         <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
     </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
+    <feature name="Media">
+        <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="Compass">
+        <param name="android-package" value="org.apache.cordova.deviceorientation.CompassListener" />
+    </feature>
+    <feature name="Accelerometer">
+        <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener" />
+    </feature>
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
+    <feature name="Capture">
+        <param name="android-package" value="org.apache.cordova.mediacapture.Capture" />
+    </feature>
+    <feature name="Battery">
+        <param name="android-package" value="org.apache.cordova.batterystatus.BatteryListener" />
+    </feature>
+    <feature name="Contacts">
+        <param name="android-package" value="org.apache.cordova.contacts.ContactManager" />
+    </feature>
+    <feature name="Sms">
+        <param name="android-package" value="com.cordova.plugins.sms.Sms" />
+    </feature>
+    <feature name="Keyboard">
+        <param name="android-package" value="com.ionic.keyboard.IonicKeyboard" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="HotCodePushLocalDevMode">
+        <param name="android-package" value="com.nordnetab.chcp.localdev.HotCodePushLocalDevPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="HotCodePush">
+        <param name="android-package" value="com.nordnetab.chcp.main.HotCodePushPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="AppVersion">
+        <param name="android-package" value="uk.co.whiteoctober.cordova.AppVersion" />
+    </feature>
+    <feature name="Globalization">
+        <param name="android-package" value="org.apache.cordova.globalization.Globalization" />
+    </feature>
+    <preference name="loadUrlTimeoutValue" value="60000" />
     <gap:splash src="resources/android/splash/drawable-port-hdpi-screen.png" />
     <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
@@ -95,7 +148,6 @@
         </vs:platformSpecificWidget>
     </vs:platformSpecificValues>
     <chcp>
-        <config-file url="https://16359646.ngrok.com/chcp.json" />
         <config-file url="https://s3-us-west-2.amazonaws.com/arcapp/chcp.json" />
         <auto-download enabled="true" />
         <auto-install enabled="true" />

@@ -1,4 +1,5 @@
-cordova.define("plugin.http.request.phonegap-http-requst", function(require, exports, module) { (function(window) {
+cordova.define("plugin.http.request.phonegap-http-requst", function(require, exports, module) {
+(function(window) {
   
   function HttpRequest() {
     var self = this;
