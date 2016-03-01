@@ -174,6 +174,21 @@
               return $sce.trustAsHtml(newString);
           }
       })
+
+
+        .filter('img2server', function ($sce, $sanitize) {
+            return function (text) {
+
+                return $sce.trustAsHtml($sanitize(text).replace(/(src=")(?!https?:\/\/)\/?([^"]+\.(jpe?g|png|gif|bmp))"/ig, '$1http://arcapp.interon.co.za/$2"'));
+            }
+        })
+      .filter('safe', function ($sce, $sanitize) {
+          return function (text) {
+
+              return $sce.trustAsHtml(text);
+          }
+      })
+
       .directive('spacer', function () {
           return {
               template: '<div ng-show="windows" class="spacer" style="height: 100px;"></div><div ng-show="android" class="spacer" style="height: 100px;"></div><div ng-show="ios" class="spacer" style="height: 120px;"></div>',
@@ -221,7 +236,7 @@
         RestangularProvider.setBaseUrl('http://arcapp.interon.co.za/');
 
         RestangularProvider.setResponseExtractor(function(response, operation) {
-            debugger;
+
             if(operation=="getList")
             {
                 return response.entities;
@@ -246,7 +261,7 @@
         RestangularProvider.setErrorInterceptor(
 
             function ( response ) {
-                debugger;
+
             });
 
        /* RestangularProvider.setRequestSuffix('.json');
@@ -473,7 +488,7 @@ $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleT
 
       loggingDecorator.decorate($log);
 
-
+        _.contains = _.includes
 
         $rootScope.$on('$stateChangeError',
         function (event, toState, toParams, fromState, fromParams, error) {
@@ -493,6 +508,7 @@ $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleT
         });
 
       $ionicPlatform.ready(function () {
+
           try {
               var hcp = {
 
@@ -518,10 +534,7 @@ $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleT
                           console.log('Error during the configuration process');
                           console.log(error.description);
                           if (error.description) {
-                              $ionicPopup.alert({
-                                  title: "Hot Plug Info",
-                                  content: error.description
-                              });
+                          console.log(error.description)
                           }
                       } else {
                           console.log('Plugin configured successfully');
@@ -560,7 +573,7 @@ $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleT
               hcp.initialize();
           }catch  (err)
           {
-
+              console.log(err);
           }
           //var div = document.getElementById("map_canvas");
           //var map = plugin.google.maps.Map.getMap(div);
@@ -662,12 +675,7 @@ $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleT
               });
           }
 
-          setTimeout(function() {
-            try {
-              navigator.splashscreen.hide();
-            }catch(e){}
 
-          }, 4000);
           if(window.Connection) {
               if(navigator.connection.type == Connection.NONE) {
                   $ionicPopup.alert({
@@ -798,6 +806,12 @@ $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleT
         }, 100);  // 100 = previous view
 
         Application.init();
+          setTimeout(function() {
+              try {
+                  navigator.splashscreen.hide();
+              }catch(e){}
+
+          }, 1000);
         Application.gotoStartPage($state);
 
       });

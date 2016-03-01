@@ -25,7 +25,7 @@
   <!-- build:sass -->
   <link href="css/ionic.app.css" rel="stylesheet">
   <!-- endbuild -->
-  <script src="lib/lodash/lodash.min.js"></script>
+  <script src="lib/lodash/dist/lodash.min.js"></script>
    <!--
       For DEV we can use ionic.bundle.js (non-minified) to debug moduleErr errors, see:
       http://www.chrisgmyr.com/2014/08/debugging-uncaught-error-injectormodulerr-in-angularjs/
@@ -95,10 +95,10 @@
   <script src="js/app/admin/admin.ctrl.js"></script>
   <script src="js/app/arcapp/AppUpdater.js"></script>
   <script src="js/app/arcapp/map.service.js"></script>
+  <script src="js/app/firebase/fbutil.service.js"></script>
   <script src="js/app/intro/intro-header.directive.js"></script>
   <script src="js/app/intro/intro.ctrl.js"></script>
   <script src="js/app/intro/intro.router.js"></script>
-  <script src="js/app/firebase/fbutil.service.js"></script>
   <script src="js/app/mainpage/demo.ctrl.js"></script>
   <script src="js/app/mainpage/glob.service.js"></script>
   <script src="js/app/mainpage/mainPage.router.js"></script>
@@ -120,16 +120,16 @@
   <script src="js/app/tripmanagement/home/opstriplist.ctrl.js"></script>
   <script src="js/app/tripmanagement/home/tripdetails.ctrl.js"></script>
   <script src="js/app/tripmanagement/home/triplist.ctrl.js"></script>
-  <script src="js/app/tripmanagement/operationalplan/operation.ctrl.js"></script>
   <script src="js/app/tripmanagement/locations/controllers.js"></script>
   <script src="js/app/tripmanagement/locations/maps.ctrl.js"></script>
-  <script src="js/app/tripmanagement/surveys/survey.ctrl.js"></script>
+  <script src="js/app/tripmanagement/operationalplan/operation.ctrl.js"></script>
   <script src="js/app/tripmanagement/weather/locations.ctrl.js"></script>
   <script src="js/app/tripmanagement/weather/locations.factory.js"></script>
   <script src="js/app/tripmanagement/weather/locations.storage.factory.js"></script>
   <script src="js/app/tripmanagement/weather/weatherlist.constant.js"></script>
   <script src="js/app/tripmanagement/weather/weatherlist.ctrl.js"></script>
   <script src="js/app/tripmanagement/weather/weatherlist.factory.js"></script>
+  <script src="js/app/tripmanagement/surveys/survey.ctrl.js"></script>
   <script src="js/app/user/services/user.service.js"></script>
   <script src="js/app/user/models/user.model.js"></script>
   <script src="js/app/util/directives/formErrors.directive.js"></script>
@@ -195,7 +195,7 @@
 </head>
 
 <!-- NOTE: "ng-strict-di" will be added to the body tag during a production build (see gulp.js) -->
-<body style="background-color: black" fullscreen ng-app="app" ng-controller="ApplicationCtrl as main">    <!-- ApplicationCtrl: global/default controller -->
+<body ng-app="app" fullscreen ng-controller="ApplicationCtrl as main">    <!-- ApplicationCtrl: global/default controller -->
   <!--
     The views will be rendered in the <ion-nav-view> directive below
   -->

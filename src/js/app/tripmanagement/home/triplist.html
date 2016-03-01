@@ -23,8 +23,6 @@
                         <ion-list  class="list card">
                             <ion-item ui-sref="tripdetails({Id:{{t.properties.Id.value}}})" ng-repeat = "t in triplist " class="item item-avatar" >
 
-                            <img src= "{{url +countries[$index].properties.buttonFlag.value}}">
-
                                 <b>{{t.title}}</b>
                                 <p ng-show="showclient">Arrival:{{t.properties.arrivalDateTime.value}}</p>
                                 <p ng-show="showclient">Departure:{{t.properties.departureDateTime.value}}</p>
@@ -79,7 +77,7 @@
 <style>
     .pane{
 
-        background: url("img/login.png") no-repeat center center fixed !important;
+        background: url("img/background.png") no-repeat center center fixed !important;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;

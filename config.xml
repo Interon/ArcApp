@@ -1,188 +1,168 @@
-<?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="107" id="co.za.interon.arcapp" ios-CFBundleVersion="1070" version="1.0.107" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>ArcApp</name>
-    <description>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<widget android-versionCode="113" id="Interon.ArcFyreApp" ios-CFBundleVersion="1130" version="1.0.113" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
+  <name>ArcApp</name>
+  <description>
        Arcfyre Application
     </description>
-    <author email="anton@interon.co.za" href="www.interon.co.za">
+  <author email="anton@interon.co.za" href="www.interon.co.za">
       Interon
     </author>
-    <gap:config-file parent="/manifest" platform="android">
-        <uses-permission android:name="android.permission.INTERNET" />
-        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-        <application android:debuggable="true" />
-    </gap:config-file>
-    <plugin name="cordova-plugin-whitelist" version="1.0.0" />
-    <plugin name="cordova-plugin-device" version="1.1.1" />
-    <plugin name="cordova-plugin-file" version="4.1.1" />
-    <plugin name="cordova-plugin-file-transfer" version="1.5.0" />
-    <plugin name="cordova-plugin-geolocation" version="2.1.0" />
-    <plugin name="cordova-plugin-globalization" version="1.0.2" />
-    <plugin name="cordova-plugin-network-information" version="1.2.0" />
-    <plugin name="cordova-plugin-vibration" version="2.1.0" />
-    <plugin name="cordova-plugin-statusbar" version="2.1.1" />
-    <plugin name="cordova-plugin-splashscreen" version="3.1.0" />
-    <plugin name="cordova-plugin-dialogs" version="1.2.0" />
-    <plugin name="cordova-plugin-media" version="2.1.0" />
-    <plugin name="cordova-plugin-inappbrowser" version="1.2.1" />
-    <plugin name="cordova-plugin-device-orientation" version="1.0.2" />
-    <plugin name="cordova-plugin-device-motion" version="1.2.0" />
-    <plugin name="cordova-plugin-console" version="1.0.2" />
-    <plugin name="cordova-plugin-camera" version="2.1.0" />
-    <plugin name="cordova-plugin-media-capture" version="1.2.0" />
-    <plugin name="cordova-plugin-battery-status" version="1.1.1" />
-    <plugin name="cordova-plugin-contacts" version="2.0.1" />
-    <plugin name="cordova-plugin-app-version" source="npm" />
-    <plugin spec="https://github.com/Interon/cordova-hot-code-push.git" source="git" />
+  <gap:config-file parent="/manifest" platform="android">
+    <!--<application android:debuggable="true"/>-->
+  </gap:config-file>
 
+  <plugin name="cordova-plugin-whitelist" version="1.0.0"/>
+  <plugin name="cordova-plugin-device" version="1.1.1"/>
+  <plugin name="cordova-plugin-file" version="4.1.1"/>
+  <plugin name="cordova-plugin-file-transfer" version="1.5.0"/>
+  <plugin name="cordova-plugin-geolocation" version="2.1.0"/>
+  <plugin name="cordova-plugin-globalization" version="1.0.2"/>
+  <plugin name="cordova-plugin-network-information" version="1.2.0"/>
+  <plugin name="cordova-plugin-statusbar" version="2.1.1"/>
 
+  <plugin name="cordova-plugin-dialogs" version="1.2.0"/>
+  <plugin name="cordova-plugin-media" version="2.1.0"/>
+  <plugin name="cordova-plugin-inappbrowser" version="1.2.1"/>
+  <plugin name="cordova-plugin-console" version="1.0.2"/>
+  <plugin name="cordova-plugin-app-version" source="npm"/>
 
+  <preference name="phonegap-version" value="cli-6.0.0"/>
+  <preference name="windows-target-version" value="8.1" />
+  <preference name="windows-phone-target-version" value="8.1"/>
+  <preference name="WindowsDefaultUriPrefix" value="ms-appx-web://"/>
+  <preference name="WindowsToastCapable" value="true"/>
+  <preference name="permissions" value="none"/>
+  <preference name="orientation" value="portrait"/>
+  <preference name="target-device" value="handset"/>
+  <preference name="fullscreen" value="true"/>
+  <preference name="webviewbounce" value="true"/>
+  <preference name="prerendered-icon" value="true"/>
+  <preference name="stay-in-webview" value="false"/>
+  <preference name="ios-statusbarstyle" value="black-opaque"/>
+  <preference name="detect-data-types" value="true"/>
+  <preference name="exit-on-suspend" value="true"/>
+  <preference name="show-splash-screen-spinner" value="true"/>
+  <preference name="auto-hide-splash-screen" value="false"/>
+  <preference name="disable-cursor" value="false"/>
+  <preference name="android-minSdkVersion" value="19"/>
+  <preference name="android-installLocation" value="auto"/>
+  <preference name="SplashScreen" value="screen"/>
+  <preference name="deployment-target" value="7.0"/>
+  <preference name="android-build-tool" value="gradle"/>
+  <preference name="Fullscreen" value="False"/>
+  <preference name="Orientation" value="portrait"/>
+  <preference name="load-url-timeout" value="80000"/>
+  <preference name="BackupWebStorage" value="local"/>
+  <preference name="SplashScreenDelay" value="10000"/>
+  <preference name="WindowsStoreIdentityName" value="Interon.ArcFyreApp" />
+  <content src="index.html"/>
+  <allow-navigation href="*"/>
+  <allow-navigation href="http://*/*"/>
+  <allow-navigation href="https://*/*"/>
+  <allow-intent href="http://*/*"/>
+  <allow-intent href="https://*/*"/>
+  <allow-intent href="tel:*"/>
+  <allow-intent href="sms:*"/>
+  <allow-intent href="mailto:*"/>
+  <allow-intent href="geo:*"/>
+  <access origin="*"/>
+  <platform name="ios">
+    <allow-intent href="itms:*"/>
+    <allow-intent href="itms-apps:*"/>
+   
+    <icon src="icon@2x.png" width="114" height="114"/>
+    <icon src="icon-40.png" width="40" height="40"/>
+    <icon src="icon-40@2x.png" width="80" height="80"/>
+    <icon src="icon-50.png" width="50" height="50"/>
+    <icon src="icon-50@2x.png" width="100" height="100"/>
+    <icon src="icon-60.png" width="60" height="60"/>
+    <icon src="icon-60@2x.png" width="120" height="120"/>
+    <icon src="icon-60@3x.png" width="180" height="180"/>
+    <icon src="icon-72.png" width="72" height="72"/>
+    <icon src="icon-72@2x.png" width="144" height="144"/>
+    <icon src="icon-76.png" width="76" height="76"/>
+    <icon src="icon-76@2x.png" width="152" height="152"/>
+    <icon src="icon-small.png" width="29" height="29"/>
+    <icon src="icon-small@2x.png" width="58" height="58"/>
+    <icon src="icon-small@3x.png" width="87" height="87"/>
+    <splash src="Default-568h@2x~iphone.png" width="640" height="1136"/>
+    <splash src="Default-667h.png" width="750" height="1334"/>
+    <splash src="Default-736h.png" width="1242" height="2208"/>
+    <splash src="Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
+    <splash src="Default-Portrait~ipad.png" width="768" height="1024"/>
+    <splash src="Default@2x~iphone.png" width="640" height="960"/>
+    <splash src="Default~iphone.png" width="320" height="480"/>
+    <plugin spec="http://github.com/Interon/cordova-hot-code-push.git" source="git"/>
+    <plugin name="cordova-plugin-splashscreen" version="3.1.0"/>
+  </platform>
+  <platform name="android">
+    <splash src="splash.png"/>
+    <icon src="icon.png"/>
+    <icon src="drawable-ldpi-icon.png" qualifier="ldpi"/>
+    <icon src="drawable-mdpi-icon.png" qualifier="mdpi"/>
+    <icon src="drawable-hdpi-icon.png" qualifier="hdpi"/>
+    <icon src="drawable-xhdpi-icon.png" qualifier="xhdpi"/>
+    <icon src="drawable-xxhdpi-icon.png" qualifier="xxhdpi"/>
+    <icon src="drawable-xxxhdpi-icon.png" qualifier="xxxhdpi"/>
+    <splash qualifier="port-ldpi" src="drawable-port-ldpi-screen.png" />
+    <splash qualifier="port-mdpi" src="drawable-port-mdpi-screen.png" />
+    <splash qualifier="port-hdpi" src="drawable-port-hdpi-screen.png" />
+    <splash qualifier="port-xhdpi" src="drawable-port-xhdpi-screen.png" />
+    <splash qualifier="port-xxhdpi" src="drawable-port-xxhdpi-screen.png" />
+    <splash qualifier="port-xxxhdpi" src="drawable-port-xxxhdpi-screen.png" />
+    <gap:splash qualifier="port-ldpi" src="drawable-port-ldpi-screen.png" />
+    <gap:splash qualifier="port-mdpi" src="drawable-port-mdpi-screen.png" />
+    <gap:splash qualifier="port-hdpi" src="drawable-port-hdpi-screen.png" />
+    <gap:splash qualifier="port-xhdpi" src="drawable-port-xhdpi-screen.png" />
+    <gap:splash qualifier="port-xxhdpi" src="drawable-port-xxhdpi-screen.png" />
+    <gap:splash qualifier="port-xxxhdpi" src="drawable-port-xxxhdpi-screen.png" />
+    <plugin spec="http://github.com/Interon/cordova-hot-code-push.git" source="git"/>
+    <plugin name="cordova-plugin-splashscreen" version="3.0.0"/>
+  </platform>
 
-
-
-
-    <preference name="phonegap-version" value="cli-6.0.0" />
-    <preference name="windows-target-version" value="10.0" />
-    <preference name="windows-phone-target-version" value="10.0" />
-    <preference name="WindowsDefaultUriPrefix" value="ms-appx-web://" />
-    <preference name="WindowsToastCapable" value="true" />
-    <preference name="permissions" value="none" />
-    <preference name="orientation" value="portrait" />
-    <preference name="target-device" value="handset" />
-    <preference name="fullscreen" value="true" />
-    <preference name="webviewbounce" value="true" />
-    <preference name="prerendered-icon" value="true" />
-    <preference name="stay-in-webview" value="false" />
-    <preference name="ios-statusbarstyle" value="black-opaque" />
-    <preference name="detect-data-types" value="true" />
-    <preference name="exit-on-suspend" value="true" />
-    <preference name="show-splash-screen-spinner" value="true" />
-    <preference name="auto-hide-splash-screen" value="false" />
-    <preference name="disable-cursor" value="false" />
-    <preference name="android-minSdkVersion" value="19" />
-    <preference name="android-installLocation" value="auto" />
-    <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="5000" />
-    <preference name="deployment-target" value="7.0" />
-    <preference name="android-build-tool" value="gradle" />
-    <preference name="Fullscreen" value="False" />
-    <preference name="Orientation" value="portrait" />
-    <preference name="load-url-timeout" value="80000" />
-    <preference name="BackupWebStorage" value="local" />
-    <preference name="InAppBrowserStorageEnabled" value="True" />
-    <preference name="SuppressesIncrementalRendering" value="True" />
-
-
-
-     <content src="index.html" />
-    <allow-navigation href="*" />
-    <allow-navigation href="http://*/*" />
-    <allow-navigation href="https://*/*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
-    <allow-intent href="geo:*" />
-    <access origin="*" />
-    <platform name="ios">
-        <allow-intent href="itms:*" />
-        <allow-intent href="itms-apps:*" />
-    </platform>
-
-
-
-    <platform name="android">
-
-        <gap:splash src="resources/android/splash/drawable-port-hdpi-screen.png" />
-        <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
-        <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
-        <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
-        <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
-        <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
-        <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
-        <splash density="port-ldpi" src="resources/android/splash/drawable-port-ldpi-screen.png" />
-        <splash density="port-mdpi" src="resources/android/splash/drawable-port-mdpi-screen.png" />
-        <splash density="port-hdpi" src="resources/android/splash/drawable-port-hdpi-screen.png" />
-        <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
-        <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
-        <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
-        <gap:splash density="port-ldpi" src="resources/android/splash/drawable-port-ldpi-screen.png" />
-        <gap:splash density="port-mdpi" src="resources/android/splash/drawable-port-mdpi-screen.png" />
-        <gap:splash density="port-hdpi" src="resources/android/splash/drawable-port-hdpi-screen.png" />
-        <gap:splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
-        <gap:splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
-        <gap:splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
-    </platform>
-    <platform name="ios">
-        <plugin name="https://github.com/Interon/cordova-hot-code-push.git" source="git" />
-        <icon height="57" src="resources/ios/icon/icon.png" width="57" />
-        <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
-        <icon height="40" src="resources/ios/icon/icon-40.png" width="40" />
-        <icon height="80" src="resources/ios/icon/icon-40@2x.png" width="80" />
-        <icon height="50" src="resources/ios/icon/icon-50.png" width="50" />
-        <icon height="100" src="resources/ios/icon/icon-50@2x.png" width="100" />
-        <icon height="60" src="resources/ios/icon/icon-60.png" width="60" />
-        <icon height="120" src="resources/ios/icon/icon-60@2x.png" width="120" />
-        <icon height="180" src="resources/ios/icon/icon-60@3x.png" width="180" />
-        <icon height="72" src="resources/ios/icon/icon-72.png" width="72" />
-        <icon height="144" src="resources/ios/icon/icon-72@2x.png" width="144" />
-        <icon height="76" src="resources/ios/icon/icon-76.png" width="76" />
-        <icon height="152" src="resources/ios/icon/icon-76@2x.png" width="152" />
-        <icon height="29" src="resources/ios/icon/icon-small.png" width="29" />
-        <icon height="58" src="resources/ios/icon/icon-small@2x.png" width="58" />
-        <icon height="87" src="resources/ios/icon/icon-small@3x.png" width="87" />
-        <splash height="1136" src="resources/ios/splash/Default-568h@2x~iphone.png" width="640" />
-        <splash height="1334" src="resources/ios/splash/Default-667h.png" width="750" />
-        <splash height="2208" src="resources/ios/splash/Default-736h.png" width="1242" />
-        <splash height="2048" src="resources/ios/splash/Default-Portrait@2x~ipad.png" width="1536" />
-        <splash height="1024" src="resources/ios/splash/Default-Portrait~ipad.png" width="768" />
-        <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
-        <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
-    </platform>
-    <platform name="windows">
-        <icon src="resources/icons/windows/Square150x150Logo.scale-100.png" width="150" height="150" />
-        <icon src="resources/icons/windows/Square150x150Logo.scale-240.png" width="360" height="360" />
-        <icon src="resources/icons/windows/Square30x30Logo.scale-100.png" width="30" height="30" />
-        <icon src="resources/icons/windows/Square310x310Logo.scale-100.png" width="310" height="310" />
-        <icon src="resources/icons/windows/Square44x44Logo.scale-100.png" width="44" height="44" />
-        <icon src="resources/icons/windows/Square44x44Logo.scale-240.png" width="106" height="106" />
-        <icon src="resources/icons/windows/Square70x70Logo.scale-100.png" width="70" height="70" />
-        <icon src="resources/icons/windows/Square71x71Logo.scale-100.png" width="71" height="71" />
-        <icon src="resources/icons/windows/Square71x71Logo.scale-240.png" width="170" height="170" />
-        <icon src="resources/icons/windows/StoreLogo.scale-100.png" width="50" height="50" />
-        <icon src="resources/icons/windows/StoreLogo.scale-240.png" width="120" height="120" />
-        <icon src="resources/icons/windows/Wide310x150Logo.scale-100.png" width="310" height="150" />
-        <icon src="resources/icons/windows/Wide310x150Logo.scale-240.png" width="744" height="360" />
-    </platform>
-    <platform name="wp8">
-        <icon src="resources/icons/wp8/ApplicationIcon.png" width="62" height="62" />
-        <icon src="resources/icons/wp8/Background.png" width="173" height="173" />
-    </platform>
-
-    <platform name="windows">
-        <splash src="resources/screens/windows/SplashScreen.scale-100.png" width="620" height="300" />
-        <splash src="resources/screens/windows/SplashScreen.scale-240.png" width="1152" height="1920" />
-        <splash src="resources/screens/windows/SplashScreenPhone.scale-240.png" width="1152" height="1920" />
-    </platform>
-    <platform name="wp8">
-        <splash src="resources/screens/wp8/SplashScreenImage.jpg" width="480" height="800" />
-    </platform>
-
-
-
-    <vs:platformSpecificValues xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
-        <vs:platformSpecificWidget id="ArcfyreApp" platformName="windows" version="0.1.1.1">
-            <vs:name>ArcfyreApp</vs:name>
-        </vs:platformSpecificWidget>
-    </vs:platformSpecificValues>
-
-
-    <chcp>
-        <config-file url="https://s3-us-west-2.amazonaws.com/arcapp/chcp.json" />
-        <auto-download enabled="true" />
-        <auto-install enabled="true" />
-        <local-development enabled="true" />
-    </chcp>
+  <platform name="windows">
+    <icon src="Square150x150Logo.scale-100.png" width="150" height="150"/>
+    <icon src="Square150x150Logo.scale-240.png" width="360" height="360"/>
+    <icon src="Square30x30Logo.scale-100.png" width="30" height="30"/>
+    <icon src="Square310x310Logo.scale-100.png" width="310" height="310"/>
+    <icon src="Square44x44Logo.scale-100.png" width="44" height="44"/>
+    <icon src="Square44x44Logo.scale-240.png" width="106" height="106"/>
+    <icon src="Square70x70Logo.scale-100.png" width="70" height="70"/>
+    <icon src="Square71x71Logo.scale-100.png" width="71" height="71"/>
+    <icon src="Square71x71Logo.scale-240.png" width="170" height="170"/>
+    <icon src="StoreLogo.scale-100.png" width="50" height="50"/>
+    <icon src="StoreLogo.scale-240.png" width="120" height="120"/>
+    <icon src="Wide310x150Logo.scale-100.png" width="310" height="150"/>
+    <icon src="Wide310x150Logo.scale-240.png" width="744" height="360"/>
+  </platform>
+  <platform name="wp8">
+    <splash src="splash.png"/>
+    <icon src="icon.png"/>
+    <icon src="ApplicationIcon.png" width="62" height="62"/>
+    <icon src="Background.png" width="173" height="173"/>
+  </platform>
+  <platform name="windows8">
+    <splash src="splash.png"/>
+    <icon src="icon.png"/>
+    <splash src="SplashScreen.scale-100.png" width="620" height="300"/>
+    <splash src="SplashScreen.scale-240.png" width="1152" height="1920"/>
+    <splash src="SplashScreenPhone.scale-240.png" width="1152" height="1920"/>
+  </platform>
+  <platform name="wp8">
+    <splash src="splash.png"/>
+    <icon src="icon.png"/>
+    <splash src="SplashScreenImage.jpg" width="480" height="800"/>
+  </platform>
+  <vs:platformSpecificValues xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
+    <vs:platformSpecificWidget id="Interon.ArcfyreApp" platformName="windows" version="0.1.1.1">
+      <vs:name>ArcfyreApp</vs:name>
+    </vs:platformSpecificWidget>
+  </vs:platformSpecificValues>
+  <chcp>
+    <config-file url="https://s3-us-west-2.amazonaws.com/arcapp/chcp.json"/>
+    <auto-download enabled="true"/>
+    <auto-install enabled="true"/>
+    <local-development enabled="true"/>
+  </chcp>
 
 </widget>

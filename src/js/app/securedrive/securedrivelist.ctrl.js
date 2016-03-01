@@ -28,7 +28,7 @@ var securedriveListCtrl = /*@ngInject*/function ($scope,$rootScope, $ionicSideMe
     //$scope.items = Restangular.all(user.properties.Url +'/secure-drive?children=true').getList().$object;
     Restangular.all(user.properties.Url +'/secure-drive?children=true').getList()  // GET: /users
         .then(function(data) {
-            debugger;
+
         $scope.items = data;
 
         })

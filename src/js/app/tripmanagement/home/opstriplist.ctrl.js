@@ -32,6 +32,7 @@ var opstripListCtrl = /*@ngInject*/function ($scope, $ionicSideMenuDelegate,logg
         $scope.$apply()
     };
     Application.showLoading(true);
+
     if (userdata.type = 'team'){
         $scope.showclient = false;
         Restangular.all('/trips-master/?descendants=TripDetails&resolvecontent=country&resolvemedia=buttonflag').getList()
@@ -47,13 +48,19 @@ var opstripListCtrl = /*@ngInject*/function ($scope, $ionicSideMenuDelegate,logg
                     switch(data[i].class[0]) {
                         case 'TripDetails':
                             try{
-                                if(data[i].properties.clientTeamContactInfo.value.includes(userdata.id)||data[i].properties.securityTeam.value.includes(userdata.id) ) {
+
+                                if($.inArray( userdata.id, data[i].properties.clientTeamContactInfo.value )  > -1 ||$.inArray( userdata.id, data[i].properties.securityTeam.value)  > -1) {
                                     $scope.triplist.push(data[i]);
+                                } else
+                                {
+                                    if (data[i].properties.clientTeamContactInfo.value == userdata.id ||data[i].properties.securityTeam.value == userdata.id) {
+                                        $scope.triplist.push(data[i]);
+                                    }
                                 }
                             }
                             catch(err)
                             {
-                                if(data[i].properties.clientTeamContactInfo.value == userdata.id ||data[i].properties.securityTeam.value == userdata.id ) {
+                                if(data[i].properties.clientTeamContactInfo.value == userdata.id ||data[i].properties.securityTeam.value == userdata.id){
                                     $scope.triplist.push(data[i]);
                                 }
                             }

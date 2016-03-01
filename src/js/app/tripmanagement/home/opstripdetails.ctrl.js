@@ -4,7 +4,13 @@
 ;(function() {
 "use strict";
 
-var opstripDetailsController = /*@ngInject*/function ($scope,$rootScope,$ionicPlatform, $ionicSideMenuDelegate,$firebaseObject,loggingService,Application,$ionicNavBarDelegate,$ionicPopup,$http,$stateParams,Server,UserData,Restangular,$cordovaEmailComposer,$ionicModal,$sce,$ionicTabsDelegate, $interval) {
+var opstripDetailsController = /*@ngInject*/function ($scope,$rootScope,$ionicPlatform, $ionicSideMenuDelegate,$firebaseObject,loggingService,Application,$ionicNavBarDelegate,$ionicPopup,$http,$stateParams,Server,UserData,Restangular,$cordovaEmailComposer,$ionicModal,$sce,$ionicTabsDelegate, $interval,$localstorage) {
+    if (!String.prototype.includes) {
+        String.prototype.includes = function() {'use strict';
+            return String.prototype.indexOf.apply(this, arguments) !== -1;
+        };
+    }
+
     var  eventSource =null;
     $scope.$on('$ionicView.enter', function () {
 
@@ -13,7 +19,7 @@ var opstripDetailsController = /*@ngInject*/function ($scope,$rootScope,$ionicPl
     $scope.w =  window.screen.width;
     $scope.h = window.screen.height;
 
-
+    var userdata = $localstorage.getObject('user');
     $scope.modalFlightStats =null;
     if ($scope.w > 1000) {$scope.w =350;}
     $scope.hw = ';height:'+$scope.h+'px'+';width:'+ $scope.w + 'px';
@@ -43,8 +49,9 @@ $scope.body;
             }
             catch(e)
             {
-                var ss = [];
-                return ss.push(s);
+                var ss = Array();
+                 ss.push(s);
+                return ss;
             }
 
         }
@@ -69,9 +76,20 @@ $scope.body;
             $scope.SurveyUrl = "";
             $scope.News =[];
             $scope.iswindows = false;
+            $scope.showAlert = function () {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'City Alert',
+                    template: $scope.tripdetails.tripAlerts.value
+                });
+
+
+
+
+            };
             if($scope.tripdetails.tripAlerts.value)
             {
-                $scope.showTripAlerts = true;
+                $scope.showAlert();
+
             }
             if(data.entities !== undefined) {
 
@@ -108,11 +126,16 @@ $scope.body;
                         case 'EmbeddedCkeditor':
                             $scope.ops.push(data.entities[i]);
                             $scope.showops = true;
+
+
+
                             break;
                         case 'EmbeddedImages':
                             $scope.ops.push(data.entities[i]);
                             $scope.showops = true;
                             break;
+
+
                         default:
                             break;
                     }
@@ -129,17 +152,17 @@ $scope.body;
 
                     $scope.showAlert = function () {
                         var alertPopup = $ionicPopup.alert({
-                            title: 'Country Alert',
+                            title: 'City Alert',
                             template: country.properties.countryWarnings.value
                         });
 
                     };
                     Application.hideLoading();
 
-                    if(country.properties.countryWarnings.value != "" && country.properties.countryWarnings.value !==null)
-                    {
-                        $scope.showAlert();
-                    }
+                    //if(country.properties.countryWarnings.value != "" && country.properties.countryWarnings.value !==null)
+                    //{
+                    //    $scope.showAlert();
+                    //}
 
                 });
             $scope.SurveyMonkeyUrl = $sce.trustAsResourceUrl(data.properties.surveyMonkeyUrl.value);
@@ -149,9 +172,20 @@ $scope.body;
               $scope.iswindows = true;
 
             }
-            var securityTeamMembers =  splitor(data.properties.securityTeam.value);
-            var otherTeamMemberArrays = splitor(data.properties.clientTeamContactInfo.value);
-            var _teams = securityTeamMembers;
+
+             $scope.securityTeamMembers =  splitor(data.properties.securityTeam.value);
+             $scope.operationalPlanPermissions  =  splitor(data.properties.operationalPlanPermissions.value);
+
+            if($.inArray( userdata.id, $scope.operationalPlanPermissions )  > -1)
+            {
+                $scope.permissions = true
+            }
+            else {
+                $scope.permissions = false;
+            }
+
+            $scope.otherTeamMemberArrays = splitor(data.properties.clientTeamContactInfo.value);
+            var _teams = $scope.securityTeamMembers;
             for(var i=0;i<_teams.length;i++)
             {
 
@@ -167,10 +201,11 @@ $scope.body;
 
                                             if($scope.country.properties.Id.value == team.entities[x].properties.memberCountryVisiting.value)
                                             {
-
+                                              
                                                 //team.properties.tmContactNo.value = team.entities[x].properties.memberCountryContactNumber.value;
                                                 team.properties.tmContactNoLocal.value = team.entities[x].properties.memberCountryContactNumber.value;
                                                 team.properties.tmVehicle.value = team.entities[x].properties.memberCountryVehicalDescription.value;
+                                                team.properties.tmCarImage.value = team.entities[x].properties.memberCountryVehicleImage.value;
                                             }
 
                                             break;
@@ -199,11 +234,11 @@ $scope.body;
                     });
 
             }
-            var _teams = otherTeamMemberArrays;
-            for(var i=0;i<_teams.length;i++)
+            var _teams2 = $scope.otherTeamMemberArrays;
+            for(var i=0;i<_teams2.length;i++)
             {
 
-                Restangular.one('?currentmodel='+ _teams[i] +'&nocache=true&resolvecontent=teamMemberCountryDetails,MemberCountryDetails').get()
+                Restangular.one('?currentmodel='+ _teams2[i] +'&nocache=true&resolvecontent=teamMemberCountryDetails,MemberCountryDetails').get()
                     .then(function(oteam) {
                         try {
                             if (oteam.entities.length > 0) {
@@ -215,6 +250,7 @@ $scope.body;
                                             {
                                                 oteam.properties.tmContactNoLocal.value = oteam.entities[x].properties.memberCountryContactNumber.value;
                                                 team.properties.tmVehicle.value = team.entities[x].properties.memberCountryVehicalDescription.value;
+                                                team.properties.tmCarImage.value = team.entities[x].properties.memberCountryVehicleImage.value;
                                             }
 
                                             break;
@@ -294,7 +330,7 @@ $scope.body;
         $scope.modal = modal
     });
     $scope.openModal = function(data) {
-
+        debugger;
         for(var i = 0 ;i<$scope.ops.length;i++)
         {
             if($scope.ops[i].title == data) {
@@ -359,7 +395,7 @@ $scope.body;
         $scope.newsmodal.show()
     };
 
-    $scope.closeModal = function() {
+    $scope.closeNewsModal = function() {
         $scope.newsmodal.hide();
     };
 
@@ -463,6 +499,7 @@ $scope.body;
     });
 
 
+
     function flightStatus (fnumber,date) {
 
 
@@ -499,16 +536,40 @@ $scope.body;
 
 
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+    $ionicModal.fromTemplateUrl('carpic-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+    }).then(function(model) {
+
+        $scope.cp = model;
+    });
+
+    $scope.openModalCarPic = function(data) {
+
+
+        $scope.carpicurl = data.tmCarImage.value;
+
+        $scope.cp.show();
+
+    };
+
+    $scope.closeCarPic = function() {
+        $scope.cp.hide();
+    };
+
+    $scope.$on('$destroy', function() {
+        $scope.cp.remove();
+    });
+
+
+
+
+
+
 
 
 

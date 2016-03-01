@@ -24,7 +24,7 @@
   <!-- NOTE: the build-endbuild tags are used by gulp-htmlreplace - DO NOT REMOVE -->
   <link rel="stylesheet" href="css/ionic.app.min.css">
 
-  <script src="lib/lodash/lodash.min.js"></script>
+  <script src="lib/lodash/dist/lodash.min.js"></script>
    <!--
       For DEV we can use ionic.bundle.js (non-minified) to debug moduleErr errors, see:
       http://www.chrisgmyr.com/2014/08/debugging-uncaught-error-injectormodulerr-in-angularjs/
@@ -32,7 +32,7 @@
       During a production build, this gets swapped out for the minified version (ionic.bundle.min.js).
   -->
   <!-- NOTE: the build-endbuild tags are used by gulp-htmlreplace - DO NOT REMOVE -->
-  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="lib/ionic/js/ionic.bundle.min.js"></script>
 
 
   <!-- Ionic.io services - Analytics -->
@@ -133,7 +133,7 @@
 </head>
 
 <!-- NOTE: "ng-strict-di" will be added to the body tag during a production build (see gulp.js) -->
-<body ng-strict-di style="background-color: black" fullscreen ng-app="app" ng-controller="ApplicationCtrl as main">    <!-- ApplicationCtrl: global/default controller -->
+<body ng-strict-di ng-app="app" fullscreen ng-controller="ApplicationCtrl as main">    <!-- ApplicationCtrl: global/default controller -->
   <!--
     The views will be rendered in the <ion-nav-view> directive below
   -->

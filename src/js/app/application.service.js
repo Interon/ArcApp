@@ -155,7 +155,7 @@
         //
 
         if (isInitialRun()) {
-          state = 'demo';
+          state = 'login';
         } else if (!isUserRegistered()) {
           state = 'login';
         } else if (!isUserLoggedIn()) {

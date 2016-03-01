@@ -1,9 +1,6 @@
 ﻿
 <ionic-content ng-controller="opstripDetailsController">
-    <ion-refresher
-            pulling-text="Pull to refresh..."
-            on-refresh="doRefresh()">
-    </ion-refresher>
+
 <ion-nav-bar class="bar bar-header bar-dark">
 
     <ion-nav-back-button>
@@ -33,7 +30,7 @@
                 <ion-list   >
 
 
-                    <ion-item  ng-repeat="t in teams" class="card padding " >
+                    <ion-item  ng-repeat="t in teams | orderBy : -SortOrder.value" class="card padding " >
                          <img  style="float:left;padding-right:10px;max-width:85px" src="{{url + t.tmImage.value}}" >
                         <div style="margin:10px">
                             <b>{{t.Name.value}}</b>
@@ -49,10 +46,18 @@
 
                         </a><br />
                         <row class="item item-icon-left assertive" ng-show="t.tmVehicle.value"  >
+                        <a class="assertive"  ng-show="t.tmCarImage.value" ng-click="openModalCarPic(t)" href="#">
                             <i class="icon ion-android-car"></i>
 
                             {{t.tmVehicle.value}}
+
+                        </a>
                         </row>
+
+
+
+                        </row>
+
                     </ion-item>
 
                 </ion-list>
@@ -65,7 +70,8 @@
                 <ion-list   >
 
 
-                    <ion-item  ng-repeat="t in oteams" class="card padding " >
+                    <ion-item  ng-repeat="t in oteams| orderBy : -SortOrder.value" class="card padding " >
+
                         <img  style="float:left;max-width:85px;padding-right:10px" src="{{url + t.tmImage.value}}" >
                         <div style="margin:10px">
                             <b>{{t.Name.value}}</b>
@@ -82,8 +88,14 @@
                         <row class="item item-icon-left assertive" ng-show="t.tmVehicle.value"  >
                             <i class="icon ion-android-car"></i>
 
-                            {{t.tmVehicle.value}}
+                            {{t.tmVehicle.value}}<a class="assertive"  ng-show="t.tmCarImage.value" ng-click="openModalCarPic(t)" href="#">
+                            Image
+
+                        </a>
                         </row>
+
+
+                       </row>
                     </ion-item>
 
                 </ion-list>
@@ -181,7 +193,7 @@
 
                         </ion-scroll>
                     </ion-tab>
-                    <ion-tab ng-if="showops" title="Operational Plan" icon="ion-android-compass">
+                    <ion-tab ng-if="showops && permissions" title="Operational Plan" icon="ion-android-compass">
                         <ion-scroll style="top:150px" >
 
                             <spacer></spacer>
@@ -271,15 +283,29 @@
             </ion-footer-bar>
         </div>
     </script>
+    <script id="carpic-modal.html" type="text/ng-template">
+        <div class="modal">
+
+            <ion-content>
+
+            <img style="width:100%" src="{{carpicurl}}">
+
+
+
+            </ion-content>
+            <ion-footer-bar style="padding:0px">
+                <button style="margin:0px;padding:0px" class="button button-full button-dark" ng-click="closeCarPic()">Done</button>
+
+            </ion-footer-bar>
+        </div>
+    </script>
     <script id="modal.html" type="text/ng-template">
         <div class="modal">
 
             <ion-content>
 
-               <div ng-show="showhtml" style="padding:15px" ng-bind-html="html"></div>
-                <div ng-show="showimages" style="padding:15px"  ng-repeat=" h in immagearray">
-                    <img style="width:100%" src="{{url + h}}" />
-                </div>
+               <div ng-show="showhtml " style="padding:15px" ng-bind-html="html| img2server"></div>
+
 
 
             </ion-content>
@@ -301,7 +327,7 @@
 
             </ion-content>
             <ion-footer-bar style="padding:0px">
-                <button style="margin:0px;padding:0px" class="button button-full button-dark" ng-click="closeModal()">Done</button>
+                <button style="margin:0px;padding:0px" class="button button-full button-dark" ng-click="closeNewsModal()">Done</button>
 
             </ion-footer-bar>
         </div>
@@ -311,7 +337,7 @@
         <div class="modal">
 
             <ion-content>
-                <ion-item ng-bind-html="tmprofile" class="card padding item-text-wrap" >
+                <ion-item ng-bind-html="tmprofile | safe" class="card padding item-text-wrap" >
 
 
 
@@ -370,7 +396,7 @@
      }
      .pane{
 
-          background: url("img/login.png") no-repeat center center fixed !important;
+          background: url("img/background.png") no-repeat center center fixed !important;
           -webkit-background-size: cover;
           -moz-background-size: cover;
           background-size: cover;
