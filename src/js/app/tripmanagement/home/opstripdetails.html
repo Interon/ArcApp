@@ -30,7 +30,7 @@
                 <ion-list   >
 
 
-                    <ion-item  ng-repeat="t in teams | orderBy : -SortOrder.value" class="card padding " >
+                    <ion-item  ng-repeat="t in teams " class="card padding " >
                          <img  style="float:left;padding-right:10px;max-width:85px" src="{{url + t.tmImage.value}}" >
                         <div style="margin:10px">
                             <b>{{t.Name.value}}</b>
@@ -70,7 +70,7 @@
                 <ion-list   >
 
 
-                    <ion-item  ng-repeat="t in oteams| orderBy : -SortOrder.value" class="card padding " >
+                    <ion-item  ng-repeat="t in oteams" class="card padding " >
 
                         <img  style="float:left;max-width:85px;padding-right:10px" src="{{url + t.tmImage.value}}" >
                         <div style="margin:10px">
@@ -128,12 +128,12 @@
 
                             <spacerbig></spacerbig>
                             <b style="color:white;font-size:20px;margin-left:10px;">Arrivals</b>
-                           <ion-item ng-repeat="fa in flightArrivalDetails" class="list card item-text-wrap">
+                           <ion-item ng-repeat="fa in flightArrivalDetails"  class="list card item-text-wrap">
 
                             <div class="row"><div class="col">{{fa.properties.description.value}}</div></div>
                             <div class="row"><div ng-show="fa.properties.dateTime.value !='1/1/0001 12:00:00 AM'" class="col">{{fa.properties.dateTime.value}}</div></div>
 
-                               <div class="row"> <div class="col">Flight Number</div><div class="col"><a class="item item-icon-left assertive" ng-click="openModalFlightStats(fa)" href="#">
+                               <div class="row"> <div class="col">Flight Number</div><div class="col"><a   class="item item-icon-left assertive" ng-click="openModalFlightStats(fa)" href="#">
                                    <i class="icon ion-android-plane"></i>
                                    {{fa.properties.flightNumber.value}}
 
@@ -141,7 +141,7 @@
                             <div class="row"><div class="col">{{fa.properties.travelers.value}}</div></div>
                            </ion-item>
                             <b style="color:white;font-size:20px">Departures</b>
-                            <ion-item ng-repeat="fd in flightDepartureDetails" class="list card item-text-wrap">
+                            <ion-item ng-repeat="fd in flightDepartureDetails"   class="list card item-text-wrap">
                                 <div class="row"><div class="col">{{fd.properties.description.value}}</div></div>
                                 <div class="row"><div ng-show="fd.properties.dateTime.value !='1/1/0001 12:00:00 AM'" class="col">{{fd.properties.dateTime.value}}</div></div>
                                 <div class="row"> <div class="col">Flight Number</div><div class="col"><a class="item item-icon-left assertive" ng-click="openModalFlightStats(fd)" href="#">
@@ -194,10 +194,10 @@
                         </ion-scroll>
                     </ion-tab>
                     <ion-tab ng-if="showops && permissions" title="Operational Plan" icon="ion-android-compass">
-                        <ion-scroll style="top:150px" >
+                        <ion-scroll >
 
                             <spacer></spacer>
-                                <ion-list >
+                            <ion-item  style="padding:0px" class="list card">
 
                                     <ion-item ng-click="openModal(o.title)" class=" item-icon-right" ng-repeat ="o in ops">
                                         <i class="icon ion-chevron-right"> </i>
@@ -205,7 +205,7 @@
 
                                     </ion-item>
 
-                            </ion-list>
+                            </ion-item>
 
 
 
@@ -301,12 +301,18 @@
     </script>
     <script id="modal.html" type="text/ng-template">
         <div class="modal">
-
-            <ion-content>
-
-               <div ng-show="showhtml " style="padding:15px" ng-bind-html="html| img2server"></div>
+            <ion-content overflow-scroll="true">
 
 
+
+                    <div ng-show="showhtml" style="padding:15px" ng-bind-html="html| img2server"></div>
+
+                    <div ng-show="showimages" style="padding:15px"  ng-repeat=" h in immagearray">
+                        <ion-scroll zooming="true" direction="xy" >
+                         <img style="width:100%" src="{{url + h}}" />
+
+                        </ion-scroll>
+                    </div>
 
             </ion-content>
             <ion-footer-bar style="padding:0px">
@@ -322,7 +328,7 @@
 
                 <ion-item  ng-bind-html="NewsDetails | hrefToJS" class="card padding item-text-wrap" >
 
-               </ion-item>
+                </ion-item>
 
 
             </ion-content>
@@ -401,6 +407,9 @@
           -moz-background-size: cover;
           background-size: cover;
       }
-
+    #oppsitem p
+    {
+        width:100%;
+    }
 </style>
 

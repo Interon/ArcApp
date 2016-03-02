@@ -18,7 +18,9 @@ var opstripDetailsController = /*@ngInject*/function ($scope,$rootScope,$ionicPl
     });
     $scope.w =  window.screen.width;
     $scope.h = window.screen.height;
+    $scope.tomorrow = new Date();
 
+    $scope.tomorrow.setHours($scope.tomorrow.getHours() + 24);
     var userdata = $localstorage.getObject('user');
     $scope.modalFlightStats =null;
     if ($scope.w > 1000) {$scope.w =350;}
@@ -36,8 +38,24 @@ var opstripDetailsController = /*@ngInject*/function ($scope,$rootScope,$ionicPl
     $scope.teams = [];
     $scope.oteams = [];
     $scope.vteams = [];
+    $scope._teams = [];
+    $scope._oteams = [];
+    $scope._vteams = [];
     $scope.showflighttab = false;
 $scope.body;
+    $scope.SortOrder = function(list,array)
+    {
+
+        var arr=[];
+        for (var x =0; x<list.length;x++) {
+            for (var y =0; y<array.length;y++) {
+                if(list[x].toString() == array[y].Id.value.toString() ){
+                    arr.push(array[y]);
+                }
+            }
+        }
+        return arr;
+    }
     function splitor (s)
     {
 
@@ -86,7 +104,29 @@ $scope.body;
 
 
             };
-            if($scope.tripdetails.tripAlerts.value)
+
+
+            $scope.bubbleSort = function(arr) {
+                if(arr.length < 0 || !Array.isArray(arr)) {
+                    throw new Error();
+                }
+
+                for(var i=0; i < arr.length -1 ; i++) {
+                    for(var x=0; x < arr.length - 1; x++) {
+                        if(arr[x].SortOrder.value > arr[x+1].SortOrder.value) {
+                            var theGreater = arr[x];
+                            arr[x] = arr[x + 1];
+                            arr[x+1] = theGreater;
+                        }
+                    }
+                }
+                return arr;
+            }
+
+
+
+
+    if($scope.tripdetails.tripAlerts.value)
             {
                 $scope.showAlert();
 
@@ -176,7 +216,7 @@ $scope.body;
              $scope.securityTeamMembers =  splitor(data.properties.securityTeam.value);
              $scope.operationalPlanPermissions  =  splitor(data.properties.operationalPlanPermissions.value);
 
-            if($.inArray( userdata.id, $scope.operationalPlanPermissions )  > -1)
+            if($.inArray( userdata.id.toString(), $scope.operationalPlanPermissions )  > -1)
             {
                 $scope.permissions = true
             }
@@ -189,7 +229,7 @@ $scope.body;
             for(var i=0;i<_teams.length;i++)
             {
 
-                Restangular.one('?currentmodel='+ _teams[i] +'&children=true'+ '&nocache=true&resolvecontent=memberCountryVisiting').get()
+                Restangular.one('?currentmodel='+ _teams[i] +'&children=true'+ '&nocache=true&resolvecontent=memberCountryVisiting&resolveMedia=memberCountryVehicleImage').get()
                     .then(function(team) {
                         try {
 
@@ -229,16 +269,22 @@ $scope.body;
 
                             }
 
-                        $scope.teams.push(team.properties);
+                        $scope._teams.push( team.properties);
 
+                        $scope.teams = $scope.SortOrder( $scope.securityTeamMembers,$scope._teams);
                     });
 
             }
+
+
+
+
+
             var _teams2 = $scope.otherTeamMemberArrays;
             for(var i=0;i<_teams2.length;i++)
             {
 
-                Restangular.one('?currentmodel='+ _teams2[i] +'&nocache=true&resolvecontent=teamMemberCountryDetails,MemberCountryDetails').get()
+                Restangular.one('?currentmodel='+ _teams2[i] +'&nocache=true&resolvecontent=teamMemberCountryDetails,MemberCountryDetails&resolveMedia=memberCountryVehicleImage').get()
                     .then(function(oteam) {
                         try {
                             if (oteam.entities.length > 0) {
@@ -274,8 +320,8 @@ $scope.body;
 
                         }
 
-                        $scope.oteams.push(oteam.properties);
-
+                        $scope._oteams.push(oteam.properties);
+                        $scope.oteams = $scope.SortOrder( $scope.otherTeamMemberArrays,$scope._oteams);
                     });
 
             }
@@ -330,7 +376,7 @@ $scope.body;
         $scope.modal = modal
     });
     $scope.openModal = function(data) {
-        debugger;
+
         for(var i = 0 ;i<$scope.ops.length;i++)
         {
             if($scope.ops[i].title == data) {
@@ -352,6 +398,7 @@ $scope.body;
                         .then(function(immagearray) {
 
                             $scope.immagearray = immagearray;
+
                         });
                 }
             }
@@ -551,7 +598,7 @@ $scope.body;
     $scope.openModalCarPic = function(data) {
 
 
-        $scope.carpicurl = data.tmCarImage.value;
+        $scope.carpicurl = $scope.url + data.tmCarImage.value;
 
         $scope.cp.show();
 

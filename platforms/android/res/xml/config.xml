@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="110" id="co.za.interon.arcapp" ios-CFBundleVersion="1100" version="1.0.110" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget android-versionCode="121" id="Interon.ArcFyreApp" ios-CFBundleVersion="1121" version="1.0.121" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
@@ -55,19 +55,26 @@
         <param name="android-package" value="org.apache.cordova.globalization.Globalization" />
     </feature>
     <preference name="loadUrlTimeoutValue" value="60000" />
-    <splash src="res/android/splash/drawable-port-hdpi-screen.png" />
-    <icon density="ldpi" src="resources\android\icon\drawable-ldpi-icon.png" />
-    <icon density="mdpi" src="resources\android\icon\drawable-mdpi-icon.png" />
-    <icon density="hdpi" src="resources\android\icon\drawable-hdpi-icon.png" />
-    <icon density="xhdpi" src="resources\android\icon\drawable-xhdpi-icon.png" />
-    <icon density="xxhdpi" src="resources\android\icon\drawable-xxhdpi-icon.png" />
-    <icon density="xxxhdpi" src="resources\android\icon\drawable-xxxhdpi-icon.png" />
-    <splash density="port-ldpi" src="resources\android\splash\drawable-port-ldpi-screen.png" />
-    <splash density="port-mdpi" src="resources\android\splash\drawable-port-mdpi-screen.png" />
-    <splash density="port-hdpi" src="resources\android\splash\drawable-port-hdpi-screen.png" />
-    <splash density="port-xhdpi" src="resources\android\splash\drawable-port-xhdpi-screen.png" />
-    <splash density="port-xxhdpi" src="resources\android\splash\drawable-port-xxhdpi-screen.png" />
-    <splash density="port-xxxhdpi" src="resources\android\splash\drawable-port-xxxhdpi-screen.png" />
+    <splash src="splash.png" />
+    <icon src="icon.png" />
+    <icon qualifier="ldpi" src="drawable-ldpi-icon.png" />
+    <icon qualifier="mdpi" src="drawable-mdpi-icon.png" />
+    <icon qualifier="hdpi" src="drawable-hdpi-icon.png" />
+    <icon qualifier="xhdpi" src="drawable-xhdpi-icon.png" />
+    <icon qualifier="xxhdpi" src="drawable-xxhdpi-icon.png" />
+    <icon qualifier="xxxhdpi" src="drawable-xxxhdpi-icon.png" />
+    <splash qualifier="port-ldpi" src="drawable-port-ldpi-screen.png" />
+    <splash qualifier="port-mdpi" src="drawable-port-mdpi-screen.png" />
+    <splash qualifier="port-hdpi" src="drawable-port-hdpi-screen.png" />
+    <splash qualifier="port-xhdpi" src="drawable-port-xhdpi-screen.png" />
+    <splash qualifier="port-xxhdpi" src="drawable-port-xxhdpi-screen.png" />
+    <splash qualifier="port-xxxhdpi" src="drawable-port-xxxhdpi-screen.png" />
+    <gap:splash qualifier="port-ldpi" src="drawable-port-ldpi-screen.png" />
+    <gap:splash qualifier="port-mdpi" src="drawable-port-mdpi-screen.png" />
+    <gap:splash qualifier="port-hdpi" src="drawable-port-hdpi-screen.png" />
+    <gap:splash qualifier="port-xhdpi" src="drawable-port-xhdpi-screen.png" />
+    <gap:splash qualifier="port-xxhdpi" src="drawable-port-xxhdpi-screen.png" />
+    <gap:splash qualifier="port-xxxhdpi" src="drawable-port-xxxhdpi-screen.png" />
     <name>ArcApp</name>
     <description>
        Arcfyre Application
@@ -76,9 +83,9 @@
       Interon
     </author>
     <gap:config-file parent="/manifest" platform="android">
-        <application android:debuggable="true" />
     </gap:config-file>
     <preference name="phonegap-version" value="cli-6.0.0" />
+    <preference name="windows-target-version" value="8.1" />
     <preference name="windows-phone-target-version" value="8.1" />
     <preference name="WindowsDefaultUriPrefix" value="ms-appx-web://" />
     <preference name="WindowsToastCapable" value="true" />
@@ -97,14 +104,15 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="android-installLocation" value="auto" />
-    <preference name="SplashScreen" value="splash" />
+    <preference name="SplashScreen" value="screen" />
     <preference name="deployment-target" value="7.0" />
     <preference name="android-build-tool" value="gradle" />
     <preference name="Fullscreen" value="False" />
     <preference name="Orientation" value="portrait" />
     <preference name="load-url-timeout" value="80000" />
     <preference name="BackupWebStorage" value="local" />
-    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="WindowsStoreIdentityName" value="Interon.ArcFyreApp" />
     <content src="index.html" />
     <allow-navigation href="*" />
     <allow-navigation href="http://*/*" />
@@ -117,7 +125,7 @@
     <allow-intent href="geo:*" />
     <access origin="*" />
     <vs:platformSpecificValues xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
-        <vs:platformSpecificWidget id="ArcfyreApp" platformName="windows" version="0.1.1.1">
+        <vs:platformSpecificWidget id="Interon.ArcfyreApp" platformName="windows" version="0.1.1.1">
             <vs:name>ArcfyreApp</vs:name>
         </vs:platformSpecificWidget>
     </vs:platformSpecificValues>
@@ -127,6 +135,4 @@
         <auto-install enabled="true" />
         <local-development enabled="true" />
     </chcp>
-    <splash src="resources/splash.png" />
-    <icon src="resources/icon.png" />
 </widget>

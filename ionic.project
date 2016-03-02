@@ -1,0 +1,29 @@
+{
+  "name": "ArcApp",
+  "app_id": "379f6eb0",
+  "proxies": [
+    {
+      "path": "/parse-api",
+      "proxyUrl": "https://api.parse.com"
+    }
+  ],
+  "gulpStartupTasks": [
+    "default",
+    "watch"
+  ],
+  "imagePaths": [
+    "resources/**/*"
+  ],
+  "watchPatterns": [
+    "src/**/*",
+    "!src/lib/**/*"
+  ],
+  "documentRoot": "src",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
+}

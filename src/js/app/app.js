@@ -566,6 +566,15 @@ $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleT
                           console.log(error.description);
                       } else {
                           console.log('Update installed!');
+                          $ionicPopup.confirm({
+                                  title: "Update",
+                                  content: "New update installed. Restart the app?"
+                              })
+                              .then(function(result) {
+                                  if(!result) {
+                                      ionic.Platform.exitApp();
+                                  }
+                              });
                       }
                   }
               };
@@ -735,7 +744,7 @@ $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleT
 
                           });
                   }, 30000);
-                  $ionicPopup.confirm({
+                  $ionicPopup.alert({
                           title: "Internet Disconnected",
                           content: "The internet is disconnected on your device."
                       })

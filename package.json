@@ -1,0 +1,109 @@
+{
+  "name": "ArcApp",
+  "version": "1.0.100",
+  "private": true,
+  "description": "app: An Ionic project",
+  "dependencies": {
+    "gulp": "^3.5.6",
+    "gulp-concat": "^2.2.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-sass": "^2.2.0",
+    "ionic-native-transitions": "^1.0.0-rc9",
+    "streamdataio-js-sdk": "^1.0.5"
+  },
+  "devDependencies": {
+    "bower": "^1.3.3",
+    "colors": "^1.1.2",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^1.7.0",
+    "gulp-debug": "^2.1.2",
+    "gulp-extend": "^0.2.0",
+    "gulp-html-replace": "^1.5.1",
+    "gulp-if": "^2.0.0",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-inject": "^3.0.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-minify-html": "^1.0.4",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-ng-constant": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.3",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-sync": "^0.1.4",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.7",
+    "gulp-zip": "^3.0.2",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.3",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.6",
+    "karma-story-reporter": "^0.3.1",
+    "plist": "^1.2.0",
+    "protractor": "^3.1.1",
+    "read-package-json": "^2.0.3",
+    "shelljs": "^0.6.0",
+    "vinyl-paths": "^2.1.0",
+    "xml2js": "^0.4.16"
+  },
+  "cordovaPlugins": [
+    "org.apache.cordova.device",
+    "org.apache.cordova.console",
+    "org.apache.cordova.splashscreen",
+    "com.ionic.keyboard",
+    "cordova-plugin-geolocation",
+    "com.cordova.plugins.sms",
+    {
+      "locator": "https://github.com/apache/cordova-plugin-statusbar.git",
+      "id": "cordova-plugin-statusbar"
+    },
+    "cordova-plugin-globalization",
+    "cordova-plugin-whitelist",
+    {
+      "locator": "https://github.com/whiteoctober/cordova-plugin-app-version.git",
+      "id": "cordova-plugin-app-version"
+    },
+    "ionic-plugin-deploy",
+    "plugin.http.request",
+    {
+      "locator": "https://github.com/nightstomp/cordova-plugin-googlemaps-sdk",
+      "id": "com.googlemaps.ios"
+    },
+    "cordova-plugin-googleplayservices",
+    "phonegap-plugin-push",
+    "cordova-hot-code-push-plugin",
+    "cordova-hot-code-push-local-dev-addon"
+  ],
+  "scripts": {
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update",
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor protractor.conf.js"
+  },
+  "cordovaPlatforms": [
+    {
+      "platform": "ios",
+      "version": "4.0.1",
+      "locator": "ios@4.0.1"
+    },
+    {
+      "platform": "windows",
+      "version": "4.3.0",
+      "locator": "windows@4.3.0"
+    }
+  ],
+  "main": "build.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Interon/ArcApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Interon/ArcApp/issues"
+  },
+  "homepage": "https://github.com/Interon/ArcApp"
+}

@@ -49,7 +49,9 @@ var opstripListCtrl = /*@ngInject*/function ($scope, $ionicSideMenuDelegate,logg
                         case 'TripDetails':
                             try{
 
-                                if($.inArray( userdata.id, data[i].properties.clientTeamContactInfo.value )  > -1 ||$.inArray( userdata.id, data[i].properties.securityTeam.value)  > -1) {
+                                var a =   data[i].properties.clientTeamContactInfo.value.split(',');
+                                var b =  data[i].properties.securityTeam.value.split(',');
+                                if(  a.indexOf(userdata.id.toString())   >= 0 ||b.indexOf(userdata.id.toString())  >= 0) {
                                     $scope.triplist.push(data[i]);
                                 } else
                                 {

@@ -1,0 +1,9 @@
+{
+  "name": "arcapp",
+  "s3bucket": "arcapp",
+  "s3region": "us-west-2",
+  "ios_identifier": "ArcApp",
+  "android_identifier": "co.za.interon.arcapp",
+  "update": "start",
+  "content_url": "https://s3-us-west-2.amazonaws.com/arcapp"
+}
