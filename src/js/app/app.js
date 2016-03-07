@@ -484,7 +484,7 @@ $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleT
     })
 
     .run(function ($ionicPlatform, $ionicPopup, $ionicSideMenuDelegate, $ionicHistory, $state, $rootScope, $translate,$timeout,
-                   $log, loggingDecorator, Application, APP, Tracking,LocationService,Restangular) {
+                   $log, loggingDecorator, Application, APP, Tracking,LocationService,Restangular,$interval) {
 
       loggingDecorator.decorate($log);
 
@@ -506,84 +506,91 @@ $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleT
             $state.go('login', error.error === "userEmailNotVerified" ? {verifyEmail: 'notVerified'} : {});
           }
         });
+   function checkHCP()
+   {
+       setTimeout(function() {
+           try {
+               $rootScope.hcp = {
 
+                   // Application Constructor
+                   initialize: function () {
+                       console.log('hcp - > Init');
+
+                       $rootScope.hcp.configurePlugin();
+                   },
+
+
+                   configurePlugin: function () {
+                       console.log('hcp - > configurePlugin');
+                       var options = {
+                           'config-file': 'https://s3-us-west-2.amazonaws.com/arcapp/chcp.json'
+                       };
+
+                       chcp.configure(options, this.configureCallback);
+                   },
+
+                   configureCallback: function (error) {
+                       console.log('hcp - > configureCallback');
+                       if (error) {
+                           console.log('Error during the configuration process');
+                           console.log(error.description);
+                           if (error.description) {
+                               console.log(error.description)
+                           }
+                       } else {
+                           console.log('Plugin configured successfully');
+                           $scope.hcp.checkForUpdate();
+                       }
+                   },
+
+                   checkForUpdate: function () {
+
+                       console.log('hcp - > checkForUpdate');
+                       chcp.fetchUpdate($rootScope.hcp.fetchUpdateCallback);
+                   },
+
+                   fetchUpdateCallback: function (error, data) {
+                       console.log('hcp - > checkForUpdate');
+                       if (error) {
+                           console.log('Failed to load the update with error code: ' + error.code);
+                           console.log(error.description);
+                           return;
+                       }
+                       console.log('Update is loaded, running the installation');
+
+                       chcp.installUpdate($rootScope.hcp.installationCallback);
+                   },
+
+                   installationCallback: function (error) {
+                       console.log('hcp - > installationCallback');
+                       if (error) {
+                           console.log('Failed to install the update with error code: ' + error.code);
+                           console.log(error.description);
+                       } else {
+                           showBrutalError(
+                               "New Update",
+                               "The App needs to be restarted");
+                       }
+                       navigator.splashscreen.hide();
+                   }
+               };
+
+               $rootScope.hcp.initialize();
+           }catch(e){
+               navigator.splashscreen.hide();
+               console.log(e);
+           }
+
+       }, 20000);
+   }
       $ionicPlatform.ready(function () {
-
-          try {
-              var hcp = {
-
-                  // Application Constructor
-                  initialize: function () {
-                      console.log('hcp - > Init');
-                      hcp.configurePlugin();
-                  },
+          checknetwork();
+          checkHCP();
 
 
-                  configurePlugin: function () {
-                      console.log('hcp - > configurePlugin');
-                      var options = {
-                          'config-file': 'https://s3-us-west-2.amazonaws.com/arcapp/chcp.json'
-                      };
 
-                      chcp.configure(options, this.configureCallback);
-                  },
 
-                  configureCallback: function (error) {
-                      console.log('hcp - > configureCallback');
-                      if (error) {
-                          console.log('Error during the configuration process');
-                          console.log(error.description);
-                          if (error.description) {
-                          console.log(error.description)
-                          }
-                      } else {
-                          console.log('Plugin configured successfully');
-                          hcp.checkForUpdate();
-                      }
-                  },
 
-                  checkForUpdate: function () {
-                      console.log('hcp - > checkForUpdate');
-                      chcp.fetchUpdate(this.fetchUpdateCallback);
-                  },
-
-                  fetchUpdateCallback: function (error, data) {
-                      console.log('hcp - > checkForUpdate');
-                      if (error) {
-                          console.log('Failed to load the update with error code: ' + error.code);
-                          console.log(error.description);
-                          return;
-                      }
-                      console.log('Update is loaded, running the installation');
-
-                      chcp.installUpdate(this.installationCallback);
-                  },
-
-                  installationCallback: function (error) {
-                      console.log('hcp - > installationCallback');
-                      if (error) {
-                          console.log('Failed to install the update with error code: ' + error.code);
-                          console.log(error.description);
-                      } else {
-                          console.log('Update installed!');
-                          $ionicPopup.confirm({
-                                  title: "Update",
-                                  content: "New update installed. Restart the app?"
-                              })
-                              .then(function(result) {
-                                  if(!result) {
-                                      ionic.Platform.exitApp();
-                                  }
-                              });
-                      }
-                  }
-              };
-
-              hcp.initialize();
-          }catch  (err)
-          {
-              console.log(err);
-          }
           //var div = document.getElementById("map_canvas");
           //var map = plugin.google.maps.Map.getMap(div);
 
@@ -600,44 +607,9 @@ $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleT
           //push.register(function(token) {
           //    console.log("Device token:",token.token);
           //});
-          if(window.Connection) {
-              if (navigator.connection.type == Connection.NONE) {
-                  $ionicPopup.alert({
-                          title: "Internet Disconnected",
-                          content: "The internet is disconnected on your device."
-                      })
-                      .then(function (result) {
-                          if (!result) {
-                              $ionicPopup.alert({
-                                  title: "Phone Error",
-                                  content: "Network can not be detected"
-                              })
-                              ionic.Platform.exitApp();
-                          }
-                      });
-                  ionic.Platform.exitApp();
-              }
-
-          }
-          if(window.Connection) {
-              if (navigator.connection.type == Connection.CELL_2G) {
-                  $ionicPopup.alert({
-                          title: "Slow Network Speed",
-                          content: "This application might malfunction because if slow network speeds"
-                      })
-                      .then(function (result) {
-                          if (!result) {
-                              $ionicPopup.alert({
-                                  title: "Phone Error",
-                                  content: "Network can not be detected"
-                              })
-                              ionic.Platform.exitApp();
-                          }
-                      });
-              }
-
-          }
-          try {
+         
+          try 
+          {
               cordova.getAppVersion(function (version) {
                   $rootScope.version = version + '.'+ APP.SubVersion;
               });
@@ -645,7 +617,8 @@ $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleT
           catch (e)
           {
               $rootScope.version = "0.00." + APP.SubVersion;
-          }
+          };
+
           LocationService.getCurrentLocation().then(function (location,lon,lat) {
 
               var countrycode = location.split(',')[1];
@@ -683,78 +656,71 @@ $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleT
                   template: text
               });
           }
+           function showBrutalError(title, text) {
+              $ionicPopup.alert({
+                  title: title,
+                  template: text
+              }).then(function(result) {
 
-
-          if(window.Connection) {
-              if(navigator.connection.type == Connection.NONE) {
-                  $ionicPopup.alert({
-                          title: "Internet Disconnected",
-                          content: "The internet is disconnected on your device."
-                      })
-                      .then(function(result) {
-                          if(!result) {
                               ionic.Platform.exitApp();
-                          }
-                      });
-              }
 
+                      });;
           }
-          if(window.Connection) {
-              if(navigator.connection.type == Connection.CELL_2G) {
-                  $ionicPopup.alert({
-                          title: "Internet Slow",
-                          content: "The internet is extremely slow App might not respond"
-                      })
-                      .then(function(result) {
-                          if(!result) {
-                              ionic.Platform.exitApp();
-                          }
-                      });
-              }
-          }
-          if(window.Connection) {
-              if(navigator.connection.type == Connection.ETHERNET || navigator.connection.type == Connection.UNKNOWN) {
-                  setTimeout(function() {
-                      try {
 
 
-                  Restangular.one('/teams/&nocache=true').get()
-                      .then(function(data) {
-                          if(!data)
-                          {
-                              $ionicPopup.alert({
-                                      title: "Can't locate Server",
-                                      content: "Server not found. Error 404"
-                                  })
-                                  .then(function() {
+          var var_1=$interval(function(){
+              checknetwork();
+          },10000);
+          //var var_1=$interval(function(){
+          //    $rootScope.hcp.checkForUpdate();
+          //},60000);
+    function checknetwork() {
+        console.log("Network Checked");
+        if (window.Connection) {
+            if (navigator.connection.type == Connection.NONE) {
 
-                                          ionic.Platform.exitApp();
+                showBrutalError(
+                    "Internet Disconnected",
+                    "The internet is disconnected on your device.");
 
-                                  });
-                          }
-                      });
-                      }catch(e){}
-                      $ionicPopup.alert({
-                              title: "Internet Disconnected",
-                              content: "The internet is disconnected on your device."
-                          })
-                          .then(function() {
+            }
+            if (navigator.connection.type == Connection.CELL_2G) {
+                showBrutalError(
+                    "Internet Slow",
+                    "The internet is extremely slow App might not respond");
 
-                                  ionic.Platform.exitApp();
+            }
 
-                          });
-                  }, 30000);
-                  $ionicPopup.alert({
-                          title: "Internet Disconnected",
-                          content: "The internet is disconnected on your device."
-                      })
-                      .then(function(result) {
-                          if(!result) {
-                              ionic.Platform.exitApp();
-                          }
-                      });
-              }
-          }
+            if (navigator.connection.type == Connection.ETHERNET || navigator.connection.type == Connection.UNKNOWN) {
+                setTimeout(function () {
+                    try {
+
+
+                        Restangular.one('/?teams/&nocache=true').get()
+                            .then(function (data) {
+                                if (!data) {
+                                    showBrutalError(
+                                        "Can't locate Server",
+                                        "Server not found. Error 404");
+
+                                }
+                            });
+                    }
+                    catch (e) {
+                        showBrutalError(
+                            "Can't locate Server",
+                            "Server not found. Error 404");
+
+                    }
+
+                }, 30000);
+
+            }
+
+
+        }
+    }
+
 
           // tracking/analytics (Ionic.io)
         Tracking.init({
@@ -815,13 +781,36 @@ $ionicConfigProvider.backButton.text('').icon('ion-chevron-left').previousTitleT
         }, 100);  // 100 = previous view
 
         Application.init();
-          setTimeout(function() {
-              try {
-                  navigator.splashscreen.hide();
-              }catch(e){}
+          Application.gotoStartPage($state);
 
-          }, 1000);
-        Application.gotoStartPage($state);
+
+          if(ionic.Platform.isIOS())
+          {
+              setTimeout(function() {
+                  try {
+                      navigator.splashscreen.hide();
+                  }catch(e){}
+
+              }, 3000);
+          }
+          if(ionic.Platform.isAndroid())
+          {
+              setTimeout(function() {
+                  try {
+                      navigator.splashscreen.hide();
+                  }catch(e){}
+
+              }, 20000);
+          }
+          if(ionic.Platform.isWindowsPhone())
+          {
+              setTimeout(function() {
+                  try {
+                      navigator.splashscreen.hide();
+                  }catch(e){}
+
+              }, 20000);
+          }
 
       });
     });

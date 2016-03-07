@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget android-versionCode="132" id="co.za.interon.arcapp" ios-CFBundleVersion="1132" version="1.0.132" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget android-versionCode="154" id="co.za.interon.arcapp" ios-CFBundleVersion="1154" version="1.0.154" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:gap="http://phonegap.com/ns/1.0">
   <name>ArcApp</name>
   <description>
        Arcfyre Application
@@ -32,7 +32,7 @@
   <preference name="WindowsDefaultUriPrefix" value="ms-appx-web://"/>
   <preference name="WindowsToastCapable" value="true"/>
   <preference name="permissions" value="none"/>
-  <!--<preference name="orientation" value="portrait"/>-->
+  <preference name="orientation" value="portrait"/>
   <preference name="target-device" value="handset"/>
   <preference name="fullscreen" value="true"/>
   <preference name="webviewbounce" value="true"/>

@@ -10,5 +10,6 @@
     <AppxPackageIsForStore>False</AppxPackageIsForStore>
     <AppxShowAllApps>False</AppxShowAllApps>
     <AppxBuildConfigurationSelection>neutral</AppxBuildConfigurationSelection>
+    <ReferenceCachePath>C:\Users\anton\AppData\Local\Temp\ArcApp_refcache</ReferenceCachePath>
   </PropertyGroup>
 </Project>

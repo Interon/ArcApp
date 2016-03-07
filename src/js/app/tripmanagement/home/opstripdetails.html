@@ -194,18 +194,18 @@
                         </ion-scroll>
                     </ion-tab>
                     <ion-tab ng-if="showops && permissions" title="Operational Plan" icon="ion-android-compass">
-                        <ion-scroll >
+                        <ion-scroll  >
 
                             <spacer></spacer>
-                            <ion-item  style="padding:0px" class="list card">
+                            <ion-list  style="padding:0px" class="list card">
 
                                     <ion-item ng-click="openModal(o.title)" class=" item-icon-right" ng-repeat ="o in ops">
                                         <i class="icon ion-chevron-right"> </i>
                                         {{o.title}}
 
                                     </ion-item>
-
-                            </ion-item>
+                                    <ion-item style="color:white">--END--</ion-item>
+                            </ion-list>
 
 
 
@@ -258,8 +258,22 @@
 
 
     </ion-tabs>
+    <script id="gallery-zoomview.html" type="text/ng-template">
+    <div class="modal image-modal transparent" on-swipe-down="closeSlideModal()">
+        <ion-slide-box on-slide-changed="slideChanged(index)" active-slide="activeSlide">
+            <ion-slide ng-repeat="image in immagearray">
 
+                <ion-scroll direction="xy" scrollbar-x="false" scrollbar-y="false"
+                            zooming="true" min-zoom="{{zoomMin}}" style="width: 100%; height: 100%"
+                            delegate-handle="scrollHandle{{$index}}" on-scroll="updateSlideStatus(activeSlide)" on-release="updateSlideStatus(activeSlide)">
 
+                    <div class="image" style="background-image: url( {{url + image}} ); width:300%"></div>
+
+                </ion-scroll>
+            </ion-slide>
+        </ion-slide-box>
+    </div>
+    </script>
     <script id="flightstats-modal.html" type="text/ng-template">
         <div class="modal">
 
@@ -301,15 +315,16 @@
     </script>
     <script id="modal.html" type="text/ng-template">
         <div class="modal">
-            <ion-content overflow-scroll="true">
+            <ion-content >
 
 
 
                     <div ng-show="showhtml" style="padding:15px" ng-bind-html="html| img2server"></div>
 
                     <div ng-show="showimages" style="padding:15px"  ng-repeat=" h in immagearray">
-                        <ion-scroll zooming="true" direction="xy" >
-                         <img style="width:100%" src="{{url + h}}" />
+                        <ion-scroll  direction="xy" scrollbar-x="false" scrollbar-y="false"
+                                     zooming="true" min-zoom="{{zoomMin}}" style="width: 100%; height: 100%">
+                         <img style="width:300%" ng-src="{{url + h}}"  />
 
                         </ion-scroll>
                     </div>
@@ -411,5 +426,33 @@
     {
         width:100%;
     }
+     .image-list-thumb {
+         padding: 2px 2px 2px 2px;
+         height: 150px;
+     }
+
+     .image-modal {
+         width: 100% !important;
+         height: 100%;
+         top: 0 !important;
+         left: 0 !important;
+     }
+
+     .transparent {
+         background: rgba(0,0,0,0.7);
+     }
+
+     .slider {
+         width: 100%;
+         height: 100%;
+     }
+
+     .image {
+         width: 100%;
+         height: 600px;
+         background-size: contain;
+         background-repeat: no-repeat;
+         background-position: center, center;
+     }
 </style>
 

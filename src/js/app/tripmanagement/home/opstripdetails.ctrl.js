@@ -10,12 +10,39 @@ var opstripDetailsController = /*@ngInject*/function ($scope,$rootScope,$ionicPl
             return String.prototype.indexOf.apply(this, arguments) !== -1;
         };
     }
+    $scope.showImages = function(index) {
+        $scope.activeSlide = index;
+        $scope.showSlideModal('gallery-zoomview.html');
+    };
 
+    $scope.showSlideModal = function(templateUrl) {
+        $ionicModal.fromTemplateUrl(templateUrl, {
+            scope: $scope
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();
+        });
+    }
+
+    $scope.closeSlideModal = function() {
+        $scope.modal.hide();
+        $scope.modal.remove()
+    };
+
+    $scope.updateSlideStatus = function(slide) {
+        var zoomFactor = $ionicScrollDelegate.$getByHandle('scrollHandle' + slide).getScrollPosition().zoom;
+        if (zoomFactor == $scope.zoomMin) {
+            $ionicSlideBoxDelegate.enableSlide(true);
+        } else {
+            $ionicSlideBoxDelegate.enableSlide(false);
+        }
+    };
     var  eventSource =null;
     $scope.$on('$ionicView.enter', function () {
 
         $ionicNavBarDelegate.showBar(true);
     });
+    $scope.zoomMin = 1;
     $scope.w =  window.screen.width;
     $scope.h = window.screen.height;
     $scope.tomorrow = new Date();
